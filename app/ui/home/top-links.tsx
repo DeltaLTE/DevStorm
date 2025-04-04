@@ -16,7 +16,7 @@ const links = [
   { name: 'Produk', href: '/utama/produk', icon: UserGroupIcon },
 ];
 
-export default function NavLinks() {
+export default function TopLinks() {
   return (
     <>
       {links.map((link) => {
