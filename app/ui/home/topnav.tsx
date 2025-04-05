@@ -2,16 +2,17 @@ import Link from 'next/link';
 import TopLinks from '@/app/ui/home/top-links';
 import AcmeLogo from '@/app/ui/acme-logo';
 import { PowerIcon } from '@heroicons/react/24/outline';
-import theme from '@/app/ui/bgcolor.css'
+import Image from 'next/image'
 
 export default function TopNav() {
   return (
-    <div className="fixed top-0 left-0 w-full z-50 flex h-20 bg-flame shadow-md px-6 py-4 items-center justify-between">
+    <div className="fixed top-0 left-0 w-full z-50 flex h-20 bg-[#FF3D00] shadow-md px-6 py-4 items-center justify-between">
       
       {/* Logo Section */}
       <Link href="/home" className="flex items-center ">
         <div className="w-32 md:w-40 rounded-md bg-blue-600 p-2">
-          <AcmeLogo />
+          <Image src="/lolmart.jpg" width={50} height={50} loading='eager' alt='lolmart'>
+          </Image>
         </div>
       </Link>
 
