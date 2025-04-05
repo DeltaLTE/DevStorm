@@ -10,10 +10,7 @@ export default function TopNav() {
       
       {/* Logo Section */}
       <Link href="/home" className="flex items-center ">
-        <div className="w-32 md:w-40 rounded-md bg-blue-600 p-2">
-          <Image src="/lolmart.jpg" width={50} height={50} loading='eager' alt='lolmart'>
-          </Image>
-        </div>
+          <Image src="/lolmart.jpeg" className='rounded-full aspect-square' width={70} height={70} loading='eager' alt='lolmart'/>
       </Link>
 
       {/* Navigation Links */}

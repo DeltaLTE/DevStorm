@@ -1,19 +1,15 @@
 import {
-  UserGroupIcon,
-  HomeIcon,
-  DocumentDuplicateIcon,
+    MagnifyingGlassIcon,
+    UserCircleIcon,
+    ShoppingCartIcon,
 } from '@heroicons/react/24/outline';
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
 const links = [
-  { name: 'Home', href: '/home', icon: HomeIcon },
-  {
-    name: 'About',
-    href: '/home/about',
-    icon: DocumentDuplicateIcon,
-  },
-  { name: 'Produk', href: '/home/produk', icon: UserGroupIcon },
+  { href: '/home', icon: MagnifyingGlassIcon },
+  { href: '/home/about', icon: ShoppingCartIcon,},
+  { name: 'Produk', href: '/home/produk', icon: UserCircleIcon },
 ];
 
 export default function TopLinks() {
