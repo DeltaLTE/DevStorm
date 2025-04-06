@@ -7,9 +7,11 @@ import {
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
 const links = [
-  { name: 'Home', href: '/home'},
-  { name: 'About', href: '/home/about'},
-  { name: 'Produk', href: '/home/produk'},
+  { name: 'Alat Prank', href: '/home/produk'},
+  { name: 'Makanan', href: '/home/produk'},
+  { name: 'Tas', href: '/home/produk'},
+  { name: 'Buku', href: '/home/produk'},
+  { name: 'Mainan', href: '/home/produk'},
 ];
 
 export default function TopLinks() {

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import TopLinks from '@/app/ui/home/top-links';
+import TopUser from '@/app/ui/home/top-user'
 import AcmeLogo from '@/app/ui/acme-logo';
 import { PowerIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image'
@@ -19,12 +20,10 @@ export default function TopNav() {
       </div>
 
       {/* Sign Out Button */}
-      <form>
-      <Link href="/login" className="flex items-center gap-2 rounded-md bg-gray-50 px-4 py-2 text-sm font-medium hover:bg-sky-100 hover:text-blue-600">
-          <PowerIcon className="w-6" />
-          <span>Sign Out</span>
-        </Link>
-      </form>
+      <div className='flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium '>
+        <TopUser />
+      </div>
+      
       
     </div>
   );

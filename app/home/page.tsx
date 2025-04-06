@@ -6,9 +6,9 @@ import Image from 'next/image';
 
 export default function Page() {
     return (
-      <div className="flex justify-center">
-        <div className="bg-yellow-300 w-full h-h-full mt-20">
-          <h2 className="text-xl font-bold">OUR PRODUCT:</h2>
+      <div className="flex justify-center h-full">
+        <div className="bg-yellow-300 w-full h-full mt-20">
+          <h2 className="text-xl font-bold pt-2">OUR PRODUCT:</h2>
           <div className="grid grid-cols-5 gap-4 my-4">
             {[
               { name: "TOY", image: "/hero-desktop.png"},
@@ -17,13 +17,13 @@ export default function Page() {
               { name: "BAG", image: "/hero-desktop.png" },
               { name: "FOOD", image: "/hero-desktop.png" },
             ].map((product, index) => (
-              <div key={index} className="text-center">
+              <div key={index} className="text-center pl-20">
                 <Image className="w-24 h-24 bg-gray-200" src={product.image} width={500} height={500} alt={product.name} />
-                <p className="mt-2 font-semibold">{product.name}</p>
+                <p className="mt-2 font-semibold w-24 h-24">{product.name}</p>
                </div>
             ))}
           </div>
-      
+        <div className='bg-white w-full h-2'></div>
         <h2 className="text-xl font-bold mt-6">PRODUK BEST SELLER:</h2>
         <div className="grid grid-cols-4 gap-4 my-4">
           {[
@@ -32,9 +32,9 @@ export default function Page() {
             { rating: 4, image: "/hero-desktop.png" },
             { rating: 4, image: "/hero-desktop.png" },
           ].map((product, index) => (
-            <div key={index} className="text-center">
+            <div key={index} className="text-center pl-20">
               <Image className="w-24 h-24 bg-gray-200" src={product.image} width={500} height={500} alt={`Product ${index + 1}`} />
-              <p className="mt-2">RATING: {"★".repeat(product.rating)}{"☆".repeat(5 - product.rating)}</p>
+              <p className="mt-2 w-24 h-24">RATING: {"★".repeat(product.rating)}{"☆".repeat(5 - product.rating)}</p>
             </div>
           ))}
         </div>
