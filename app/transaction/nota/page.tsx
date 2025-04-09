@@ -65,7 +65,7 @@ const PaymentVerification = () => {
 
                                 {/* Total */}
                                 <tr>
-                                    <td colSpan="3" className="p-4 font-bold">TOTAL PRICE</td>
+                                    <td colSpan={3} className="p-4 font-bold">TOTAL PRICE</td>
                                     <td className="p-4 text-right font-bold">RP 411.200</td>
                                 </tr>
                             </tbody>
