@@ -1,6 +1,4 @@
 // import postgres from 'postgres';
-import bcrypt from 'bcryptjs'; 
-
 // const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
 // async function listInvoices() {
