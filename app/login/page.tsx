@@ -1,33 +1,125 @@
-import AcmeLogo from '@/app/ui/acme-logo';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+'use client';
 
-export default function Page() {
+import { useState } from 'react';
+import styles from '@/app/ui/login.module.css';
+import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link'
+
+export default function LoginForm() {
+  const [user, setUser] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Toggle visibility password
+  const togglePasswordVisibility = () => {
+    setShowPassword((prev) => !prev);
+  };
+
+  // Handle submit form
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setEmailError('');
+    setPasswordError('');
+    setIsLoading(true);
+
+    let hasError = false;
+
+    // Validasi email
+    if (!user.trim()) {
+      setEmailError('USERNAME KOSONG');
+      hasError = true;
+    } else if (user.length < 5) {
+      setEmailError('Username minimal 5 karakter');
+      hasError = true;
+    }
+
+    // Validasi password
+    if (!password.trim()) {
+      setPasswordError('PASSWORD KOSONG');
+      hasError = true;
+    } else if (password.length < 4) {
+      setPasswordError('Password minimal 4 karakter');
+      hasError = true;
+    }
+
+    // Jika ada error, stop submit
+    if (hasError) {
+      setIsLoading(false);
+      return;
+    }
+
+    // Simulasi proses login
+    setTimeout(() => {
+      console.log('Login success with:', user, password);
+      if (user == 'admin123') {
+        location.href="/dashboard"
+      } else {
+        location.href="/home"
+      }
+      setIsLoading(false);
+    }, 1000);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-        {/* <AcmeLogo /> */}
-      </div>
-      <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
-          <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Acme.</strong> This is the example for the{' '}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
-              Next.js Learn Course
-            </a>
-            , brought to you by Vercel.
-          </p>
-          <Link
-            href="/home"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
+    <div className={styles.loginContainer}>
+      <form className={styles.loginBox} onSubmit={handleSubmit}>
+        <h2 className={styles.loginTitle}>LOGIN</h2>
+
+        {/* USERNAME */}
+        <div className={styles.inputWrapper}>
+          <input
+            type="text"
+            placeholder="USERNAME"
+            value={user}
+            onChange={(e) => setUser(e.target.value)}
+            className={styles.inputField}
+          />
+          {emailError && <span className={styles.errorTag}>{emailError}</span>}
+        </div>
+
+        {/* PASSWORD */}
+        <div className={styles.inputWrapper} style={{ position: 'relative' }}>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            placeholder="PASSWORD"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={styles.inputField}
+            style={{ paddingRight: '40px' }}
+          />
+          <div
+            onClick={togglePasswordVisibility}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              right: '10px',
+              transform: 'translateY(-50%)',
+              cursor: 'pointer',
+              color: '#666',
+            }}
           >
-            <span>test</span> <ArrowRightIcon className="w-5 md:w-6" />
-          </Link>
+            {showPassword ? (
+              <EyeSlashIcon className="w-5 h-5" />
+            ) : (
+              <EyeIcon className="w-5 h-5" />
+            )}
+          </div>
+          {passwordError && <span className={styles.errorTag}>{passwordError}</span>}
         </div>
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          {/* Add Hero Images Here */}
-        </div>
-      </div>
-    </main>
+
+        {/* BUTTON */}
+        <button type="submit" className={styles.buttonLogin} disabled={isLoading}>
+          {isLoading ? 'Logging in...' : 'LOGIN'}
+        </button>
+
+        {/* LINK REGISTER */}
+        <p className={styles.registerLink}>
+          DON’T HAVE AN ACCOUNT? <Link href="/login/register">REGISTER</Link>
+        </p>
+      </form>
+    </div>
   );
 }

@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:   10px;
+  height: 100vh;
+  width: 100w;
+  background: url('/bg-login.png') no-repeat center center;
+  background-size: 900px;
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.loginBox {
+  background-color: #f1e3c1;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+  width: 350px;
+  text-align: center;
+}
+
+.loginTitle {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #000;
+}
+
+.inputField {
+  width: 100%;
+  padding: 10px 40px 10px 12px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  padding-right: 40px; 
+}
+
+/* Khusus kolom password */
+.passwordField {
+  padding-left: 90px;
+}
+
+.buttonLogin {
+  background-color: #fff;
+  color: black;
+  font-weight: bold;
+  padding: 10px 0;
+  border: 2px solid black;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  margin-top: 35px;
+}
+
+.buttonLogin:hover {
+  transform: scale(1.05);
+}
+
+.registerLink {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #000;
+}
+
+.registerLink a {
+  color: blue;
+  text-decoration: none;
+}
+
+.errorMessage {
+  background-color: #ffcccc;
+  color: red;
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.errorTag {
+  position : absolute;
+  top: 50%;
+  right: -120px;
+  transform: translateY(-50%);
+  background-color: #f89483;
+  color: black;
+  font-family: 'Bouncy', cursive;
+  font-weight: bold;
+  font-size: 10px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) #888888;
+  white-space: nowrap;
+  margin-left: 8px; 
+  margin-top: 40px;
+}
+
+.inputGroup {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.inlineError {
+  position: absolute;
+  top: 50%;
+  right: -140px;
+  transform: translateY(-50%);
+  background-color: #f29c9c;
+  color: black;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 5px;
+  font-family: Arial, sans-serif;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
+  font-size: 0.75rem;
+}
+
+.inputWrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.togglePassword {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background-color: white;
+  border: none;
+  padding: 2px 6px;
+  border-radius: 50px;
+  cursor: pointer;
+  z-index: 2;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+}

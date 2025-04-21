@@ -1,0 +1,94 @@
+.registerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('/comic-bg.png') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 20px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .registerBox {
+    background-color: #e6cf92;
+    padding: 35px 25px;
+    border-radius: 25px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+    position: relative;
+    z-index: 2;
+  }
+  
+  .registerBox h2 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 28px;
+    color: #222;
+  }
+  
+  .registerBox label {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #222;
+  }
+  
+  .registerBox input {
+    width: 100%;
+    padding: 13px 15px;
+    border: none;
+    border-radius: 25px;
+    font-size: 15px;
+    margin-bottom: 22px;
+    outline: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+  
+  .registerBox input::placeholder {
+    color: #999;
+    font-weight: bold;
+  }
+  
+  .passwordWrapper {
+    position: relative;
+  }
+  
+  .passwordWrapper input {
+    padding-right: 45px;
+  }
+  
+  .registerBox button {
+    background-color: #e6cf92;
+    border: 2px solid #222;
+    color: #222;
+    font-weight: bold;
+    padding: 12px 35px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    font-size: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  }
+  
+  .registerBox button:hover {
+    background-color: #ffe89d;
+  }
+  
+  .logoTopRight {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    z-index: 3;
+  }
+  

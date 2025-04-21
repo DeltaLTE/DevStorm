@@ -1,33 +1,175 @@
-import AcmeLogo from '@/app/ui/acme-logo';
-import { ArrowRightIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
+'use client';
 
-export default function Page() {
+import { useState } from 'react';
+import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/outline';
+
+
+export default function Register() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phoneNumber: '',
+    email2: '', // Field email kedua sesuai desain
+    password: '',
+    confirmPassword: ''
+  });
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (formData.password !== formData.confirmPassword) {
+      alert('Password dan konfirmasi password tidak cocok!');
+      return;
+    }
+    
+    if (formData.email !== formData.email2) {
+      alert('Email tidak cocok!');
+      return;
+    }
+    
+    alert('Registrasi berhasil!');
+    location.href='/login'
+  };
+
   return (
-    <main className="flex min-h-screen flex-col p-6">
-      <div className="flex h-20 shrink-0 items-end rounded-lg bg-blue-500 p-4 md:h-52">
-        {/* <AcmeLogo /> */}
-      </div>
-      <div className="mt-4 flex grow flex-col gap-4 md:flex-row">
-        <div className="flex flex-col justify-center gap-6 rounded-lg bg-gray-50 px-6 py-10 md:w-2/5 md:px-20">
-          <p className={`text-xl text-gray-800 md:text-3xl md:leading-normal`}>
-            <strong>Welcome to Acme.</strong> This is the example for the{' '}
-            <a href="https://nextjs.org/learn/" className="text-blue-500">
-              Next.js Learn Course
-            </a>
-            , brought to you by Vercel.
-          </p>
-          <Link
-            href="/profil"
-            className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base"
+    <div className="min-h-screen flex items-center justify-center bg-[url('/bg-login.png')] bg-cover bg-center bg-yellow-400">
+      <form onSubmit={handleSubmit} className="w-[350px] md:w-[400px] bg-[#E9C77C] rounded-2xl p-6 space-y-4 shadow-lg">
+        <h1 className="text-2xl font-bold text-center text-black mb-6">REGISTER</h1>
+        
+        {/* CREATE NAME */}
+        <div>
+          <label className="block font-bold mb-1 text-black">CREATE NAME:</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Create Name"
+            className="w-full rounded-full px-4 py-2 outline-none placeholder-gray-600"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* EMAIL 1 */}
+        <div>
+          <label className="block font-bold mb-1 text-black">EMAIL:</label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            className="w-full rounded-full px-4 py-2 outline-none placeholder-gray-600"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* PHONE NUMBER */}
+        <div>
+          <label className="block font-bold mb-1 text-black">PHONE NUMBER:</label>
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="Phone Number"
+            className="w-full rounded-full px-4 py-2 outline-none placeholder-gray-600"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* EMAIL 2 */}
+        <div>
+          <label className="block font-bold mb-1 text-black">EMAIL:</label>
+          <input
+            type="email"
+            name="email2"
+            placeholder="Email"
+            className="w-full rounded-full px-4 py-2 outline-none placeholder-gray-600"
+            value={formData.email2}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        {/* CREATE PASSWORD */}
+        <div className="relative">
+          <label className="block font-bold mb-1 text-black">CREATE PASSWORD:</label>
+          <div className="flex items-center bg-white rounded-full">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+              placeholder="Create Password"
+              className="w-full px-4 py-2 outline-none bg-transparent rounded-l-full placeholder-gray-600"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              minLength={6}
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="px-3 focus:outline-none"
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? (
+                <EyeSlashIcon className="h-5 w-5 text-gray-700" />
+              ) : (
+                <EyeIcon className="h-5 w-5 text-gray-700" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* CONFIRM PASSWORD */}
+        <div className="relative">
+          <label className="block font-bold mb-1 text-black">CONFIRM PASSWORD:</label>
+          <div className="flex items-center bg-white rounded-full">
+            <input
+              type={showConfirmPassword ? 'text' : 'password'}
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              className="w-full px-4 py-2 outline-none bg-transparent rounded-l-full placeholder-gray-600"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              className="px-3 focus:outline-none"
+              aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+            >
+              {showConfirmPassword ? (
+                <EyeSlashIcon className="h-5 w-5 text-gray-700" />
+              ) : (
+                <EyeIcon className="h-5 w-5 text-gray-700" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* CREATE BUTTON */}
+        <div className="flex justify-end pt-4">
+          <button
+            type="submit"
+            className="bg-[#E9C77C] text-black font-bold px-8 py-2 rounded-xl border border-black shadow-md hover:bg-yellow-300 transition"
           >
-            <span>test</span> <ArrowRightIcon className="w-5 md:w-6" />
-          </Link>
+            CREATE
+          </button>
         </div>
-        <div className="flex items-center justify-center p-6 md:w-3/5 md:px-28 md:py-12">
-          {/* Add Hero Images Here */}
-        </div>
-      </div>
-    </main>
+      </form>
+    </div>
   );
 }
