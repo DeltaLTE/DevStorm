@@ -7,9 +7,9 @@ import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/outline';
 export default function Register() {
   const [formData, setFormData] = useState({
     name: '',
-    email: '',
+    user: '',
     phoneNumber: '',
-    email2: '', // Field email kedua sesuai desain
+    user2: '', // Field user kedua sesuai desain
     password: '',
     confirmPassword: ''
   });
@@ -33,8 +33,8 @@ export default function Register() {
       return;
     }
     
-    if (formData.email !== formData.email2) {
-      alert('Email tidak cocok!');
+    if (formData.user !== formData.user2) {
+      alert('user tidak cocok!');
       return;
     }
     
@@ -61,15 +61,15 @@ export default function Register() {
           />
         </div>
 
-        {/* EMAIL 1 */}
+        {/* user 1 */}
         <div>
-          <label className="block font-bold mb-1 text-black">EMAIL:</label>
+          <label className="block font-bold mb-1 text-black">USERNAME:</label>
           <input
-            type="email"
-            name="email"
-            placeholder="Email"
+            type="user"
+            name="user"
+            placeholder="Username"
             className="w-full rounded-full px-4 py-2 outline-none placeholder-gray-600"
-            value={formData.email}
+            value={formData.user}
             onChange={handleChange}
             required
           />
@@ -89,15 +89,15 @@ export default function Register() {
           />
         </div>
 
-        {/* EMAIL 2 */}
+        {/* user 2 */}
         <div>
-          <label className="block font-bold mb-1 text-black">EMAIL:</label>
+          <label className="block font-bold mb-1 text-black">CONFIRM USERNAME:</label>
           <input
-            type="email"
-            name="email2"
-            placeholder="Email"
+            type="user"
+            name="user2"
+            placeholder="Username"
             className="w-full rounded-full px-4 py-2 outline-none placeholder-gray-600"
-            value={formData.email2}
+            value={formData.user2}
             onChange={handleChange}
             required
           />
