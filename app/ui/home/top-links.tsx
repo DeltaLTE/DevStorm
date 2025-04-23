@@ -8,8 +8,9 @@ import {
 // Depending on the size of the application, this would be stored in a database.
 const links = [
   { name: 'Home', href: '/home'},
-  { name: 'About', href: '/home/about'},
   { name: 'Produk', href: '/home/produk'},
+  { name: 'About', href: '/home/about'},
+  { name: 'Contact', href: '/home/contact'}
 ];
 
 export default function TopLinks() {

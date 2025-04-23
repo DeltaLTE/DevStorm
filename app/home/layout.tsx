@@ -1,4 +1,5 @@
 import TopNav from '@/app/ui/home/topnav';
+import BotNav from '@/app/ui/home/botnav'
 
 export default function Layout({ children }: { children:
 React.ReactNode }) {
@@ -7,7 +8,9 @@ React.ReactNode }) {
             <TopNav />
             <div className="flex-grow md:overflow-y-auto ">
                 {children}
+                <BotNav />
             </div>
+            
         </div>
     );
 }

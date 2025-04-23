@@ -21,21 +21,30 @@ export default function Page() {
                 </section>
 
                 <section>
-                    <h2 className="text-xl mb-2">SOCIAL MEDIA:</h2>
-                    <ul className="space-y-2">
-                        <li className="flex items-center gap-2">
-                            <Image src="/WhatsApp.png" alt="WhatsApp" width={50} height={50} className='rounded-full'/>
-                            <span>081267672379</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                            <Image src="/Instagram.png" alt="Instagram" width={50} height={50} className='rounded-full'/>
-                            <span>LOLMARTIDN</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                            <Image src="/tiktok.png" alt="TikTok" width={50} height={50} className='rounded-full'/>
-                            <span>@LOLMARTIDN_</span>
-                        </li>
-                    </ul>
+                    <br/>
+                    <h1>Anggota Kelompok:</h1>
+                    <div className='flex justify-between'>
+                        <div className='p-2'>
+                            <Image src='/kayla.jpg' alt='gambar fortuna' width={500} height={500}></Image>
+                            <h2>Chaila Zefanya W.</h2>
+                        </div>
+
+                        <div className='p-2'>
+                            <Image src='/fortun.jpeg' alt='gambar fortuna' width={500} height={500}></Image>
+                            <h2>Fortuna Natalina S.</h2>
+                        </div>
+
+                        <div className='p-2'>
+                            <Image src='/prilla.jpg' alt='gambar fortuna' width={500} height={500}></Image>
+                            <h2>Prilla Diah Mawarni</h2>
+                        </div>
+
+                        <div className='p-2'>
+                            <Image src='/jose.jpeg' alt='gambar fortuna' width={500} height={500}></Image>
+                            <h2>Jose Morinho Ngadio</h2>
+                        </div>
+                    </div>
+                
                 </section>
             </main>
     );

@@ -1,7 +1,9 @@
 import React from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+
 const products = [
-  { name: 'BUTTS ON THINGS GAME', price: 'Rp 216.876', rating: 4, image: '/hero-desktop.png' },
+  { name: 'CHICKEN PEN', price: 'Rp 216.876', rating: 4, image: '/hero-desktop.png', href: '/home/produk/description' },
   { name: 'PERMAINAN SUSHI GO!', price: 'Rp 124.567', rating: 4, image: '/hero-desktop.png' },
   { name: 'GAME GORILLA POUND', price: 'Rp 157.985', rating: 3, image: '/hero-desktop.png' },
   { name: 'ABDUCTION: GAME DASAR', price: 'Rp 231.456', rating: 4, image: '/hero-desktop.png' },
@@ -11,10 +13,12 @@ const products = [
   { name: 'NIGHTMARE BEFORE CHRISTMAS', price: 'Rp 452.854', rating: 4, image: '/hero-desktop.png' },
 ];
 
-const ProductCard = ({ name, price, rating, image }: { name: string; price: string; rating: number; image: string }) => (
+const ProductCard = ({ name, price, rating, image, href }: { name: string; price: string; rating: number; image: string; href?: string }) => (
   <div className="bg-white rounded-2xl p-2 shadow text-center">
     <div className="bg-orange-400 rounded-xl p-2 mb-2">
-      <img src={image} alt={name} className="rounded-lg w-full h-32 object-contain" />
+      <Link href={href || '#'}> {/* Use '#' as fallback if no href */}
+        <img src={image} alt={name} className="rounded-lg w-full h-32 object-contain cursor-pointer" />
+      </Link>
     </div>
     <h3 className="text-sm font-bold mb-1">{name}</h3>
     <div className="flex justify-center mb-1">
@@ -46,6 +50,7 @@ const ProductList = () => {
         {products.map((product, index) => (
           <ProductCard key={index} {...product} />
         ))}
+
       </div>
     </div>
   );

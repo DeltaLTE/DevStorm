@@ -7,7 +7,7 @@ import Image from 'next/image';
 export default function Page() {
     return (
       <div className="flex justify-center h-full">
-        <div className="bg-yellow-300 w-full h-full mt-20">
+        <div className=" w-full h-full mt-20">
           <h2 className="text-xl font-bold pt-2">OUR PRODUCT:</h2>
           <div className="grid grid-cols-5 gap-4 my-4">
             {[
