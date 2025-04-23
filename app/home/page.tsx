@@ -11,11 +11,11 @@ export default function Page() {
           <h2 className="text-xl font-bold pt-2">OUR PRODUCT:</h2>
           <div className="grid grid-cols-5 gap-4 my-4">
             {[
-              { name: "TOY", image: "/hero-desktop.png"},
-              { name: "BOOK", image: "/hero-desktop.png" },
-              { name: "PRANK TOOLS", image: "/hero-desktop.png" },
-              { name: "BAG", image: "/hero-desktop.png" },
-              { name: "FOOD", image: "/hero-desktop.png" },
+              { name: "TOY", image: "/xonex-toy-novelties-screaming-chicken-pen-funny-gag-gifts.jpg"},
+              { name: "BOOK", image: "/hachette-chronicle-books-journals-notebooks-part-time-adult-undated-daily-planner-funny-gag-gifts-1133347263.jpg" },
+              { name: "PRANK TOOLS", image: "/accoutrements-archie-mcphee-impulse-im-funny-stuff-disappointed-sigh-funny-gag-gifts-17289520414881.png" },
+              { name: "BAG", image: "/91YwJyu2ElL._AC_UF894,1000_QL80_.jpg" },
+              { name: "FOOD", image: "/redstone-foods-candy-gummy-kraft-mac-and-cheese-funny-gag-gifts-36957684629665.png" },
             ].map((product, index) => (
               <div key={index} className="text-center pl-20">
                 <Image className="w-24 h-24 bg-gray-200" src={product.image} width={500} height={500} alt={product.name} />
@@ -27,10 +27,10 @@ export default function Page() {
         <h2 className="text-xl font-bold mt-6">PRODUK BEST SELLER:</h2>
         <div className="grid grid-cols-4 gap-4 my-4">
           {[
-            { rating: 4, image: "/hero-desktop.png" },
-            { rating: 5, image: "/hero-desktop.png" },
-            { rating: 4, image: "/hero-desktop.png" },
-            { rating: 4, image: "/hero-desktop.png" },
+            { rating: 4, image: "/xonex-toy-novelties-screaming-chicken-pen-funny-gag-gifts.jpg" },
+            { rating: 5, image: "/hachette-chronicle-books-journals-notebooks-part-time-adult-undated-daily-planner-funny-gag-gifts-1133347263.jpg" },
+            { rating: 4, image: "/accoutrements-archie-mcphee-impulse-im-funny-stuff-disappointed-sigh-funny-gag-gifts-17289520414881.png" },
+            { rating: 4, image: "/redstone-foods-candy-gummy-kraft-mac-and-cheese-funny-gag-gifts-36957684629665.png" },
           ].map((product, index) => (
             <div key={index} className="text-center pl-20">
               <Image className="w-24 h-24 bg-gray-200" src={product.image} width={500} height={500} alt={`Product ${index + 1}`} />
