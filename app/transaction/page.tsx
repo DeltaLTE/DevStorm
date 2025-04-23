@@ -15,7 +15,7 @@ export default function PaymentPage() {
       <div className='fixed top-0 left-0 w-full z-50 flex h-20 bg-[#FF3D00] shadow-md px-6 py-4 items-center justify-between'>
       
   {/* Back Button */}
-  <Link href="/nota">
+  <Link href="/transaction/nota">
     <ArrowLeftCircleIcon className='w-10 h-10'/>
   </Link>
   {/* Title */}
