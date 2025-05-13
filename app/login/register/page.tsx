@@ -43,8 +43,8 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[url('/bg-login.png')] bg-cover bg-center bg-yellow-400">
-      <form onSubmit={handleSubmit} className="w-[350px] md:w-[400px] bg-[#E9C77C] rounded-2xl p-6 space-y-4 shadow-lg">
+    <div className="min-h-screen flex items-center justify-center bg-[url('/bg-login.png')] bg-no-repeat bg-[length:1100px] bg-center bg-white">
+      <form onSubmit={handleSubmit} className="w-[400px] bg-[#E9C77C] rounded-2xl p-6 space-y-4 shadow-lg">
         <h1 className="text-2xl font-bold text-center text-black mb-6">REGISTER</h1>
         
         {/* CREATE NAME */}
