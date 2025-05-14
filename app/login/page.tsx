@@ -55,9 +55,9 @@ export default function LoginForm() {
     setTimeout(() => {
       console.log('Login success with:', user, password);
       if (user == 'admin123') {
-        location.href="/dashboard"
+        location.href = "/dashboard"
       } else {
-        location.href="/home"
+        location.href = "/home"
       }
       setIsLoading(false);
     }, 1000);
@@ -109,6 +109,8 @@ export default function LoginForm() {
           </div>
           {passwordError && <span className={styles.errorTag}>{passwordError}</span>}
         </div>
+
+
 
         {/* BUTTON */}
         <button type="submit" className={styles.buttonLogin} disabled={isLoading}>
