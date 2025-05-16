@@ -10,7 +10,7 @@ const links = [
   { name: 'Dashboard', href: '/dashboard', },
   { name: 'Pengguna', href: '/dashboard/pengguna',},
   { name: 'Produk', href: '/dashboard/produk'},
-  { name: 'Kategori', href: '/dashboard/kategori'},
+  { name: 'Transaksi', href: '/dashboard/transaksi'},
   { name: 'Status', href: '/dashboard/status'},
 ];
 

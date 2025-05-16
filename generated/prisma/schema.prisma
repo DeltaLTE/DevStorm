@@ -34,3 +34,22 @@ model users {
   email    String @unique
   password String
 }
+
+model produk {
+  id_produk   Int         @id @default(autoincrement())
+  nama_produk String      @db.VarChar(255)
+  harga       Int
+  stok        Int
+  foto        String      @db.VarChar(255)
+  deskripsi   String
+  transaksi   transaksi[]
+}
+
+model transaksi {
+  id_transaksi Int       @id @default(autoincrement())
+  nama_pembeli String?   @db.VarChar(255)
+  tanggal      DateTime? @db.Date
+  total_harga  Int?
+  id_produk    Int?
+  produk       produk?   @relation(fields: [id_produk], references: [id_produk], onDelete: NoAction, onUpdate: NoAction, map: "id_produk")
+}

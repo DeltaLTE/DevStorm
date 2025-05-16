@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.8.1
+ * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.8.1",
+  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -147,6 +147,23 @@ exports.Prisma.UsersScalarFieldEnum = {
   password: 'password'
 };
 
+exports.Prisma.ProdukScalarFieldEnum = {
+  id_produk: 'id_produk',
+  nama_produk: 'nama_produk',
+  harga: 'harga',
+  stok: 'stok',
+  foto: 'foto',
+  deskripsi: 'deskripsi'
+};
+
+exports.Prisma.TransaksiScalarFieldEnum = {
+  id_transaksi: 'id_transaksi',
+  nama_pembeli: 'nama_pembeli',
+  tanggal: 'tanggal',
+  total_harga: 'total_harga',
+  id_produk: 'id_produk'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -157,12 +174,19 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+
 
 exports.Prisma.ModelName = {
   customers: 'customers',
   invoices: 'invoices',
   revenue: 'revenue',
-  users: 'users'
+  users: 'users',
+  produk: 'produk',
+  transaksi: 'transaksi'
 };
 
 /**
