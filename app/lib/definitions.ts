@@ -106,3 +106,8 @@ export type Transaksi = {
   tanggal: Date;
   total_harga: number;
 }
+
+export type Props = {
+  params: { id: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+};
