@@ -4,24 +4,24 @@ import { Produk, Transaksi } from "@/app/lib/definitions"
 const prisma = new PrismaClient();
 
 export async function fetchProdukPrisma() {
-    try {
-        const data = await prisma.produk.findMany({
-        });
+  try {
+    const data = await prisma.produk.findMany({
+    });
 
-        const Produk = data.map((produk) => ({
-            id: produk.id_produk,
-            name: produk.nama_produk,
-            price: produk.harga,
-            inv: produk.stok,
-            img: produk.foto,
-            desc: produk.deskripsi,
-        })) as unknown as Produk[];
+    const Produk = data.map((produk) => ({
+      id_produk: produk.id_produk,
+      nama_produk: produk.nama_produk,
+      harga: produk.harga,
+      stok: produk.stok,
+      foto: produk.foto,
+      deskripsi: produk.deskripsi,
+    })) as unknown as Produk[];
 
-        return Produk;
-    } catch (error) {
-        console.error("Database Error:", error);
-        throw new Error("Failed to fetch produk.");
-    }
+    return Produk;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch produk.");
+  }
 }
 
 export async function fetchProdukById(id: string): Promise<Produk | null> {
@@ -40,26 +40,27 @@ export async function fetchProdukById(id: string): Promise<Produk | null> {
 
 
 export async function fetchTransaksiPrisma() {
-    try {
-        const data = await prisma.transaksi.findMany({
-        });
+  try {
+    const data = await prisma.transaksi.findMany({
+    });
 
-        const Transaksi = data.map((transaksi) => ({
-            id: transaksi.id_transaksi,
-            name: transaksi.nama_pembeli,
-            date: transaksi.tanggal,
-            total: transaksi.total_harga,
-        })) as unknown as Transaksi[];
+    const Transaksi = data.map((transaksi) => ({
+      id_transaksi: transaksi.id_transaksi,
+      nama_pembeli: transaksi.nama_pembeli,
+      tanggal: transaksi.tanggal,
+      total_harga: transaksi.total_harga,
+    })) as unknown as Transaksi[];
 
-        return Transaksi;
-    } catch (error) {
-        console.error("Database Error:", error);
-        throw new Error("Failed to fetch transaksi.");
-    }
+    return Transaksi;
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch transaksi.");
+  }
 }
 
 export async function fetchTotalRevenue() {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     const result = await prisma.transaksi.aggregate({
       _sum: {
         total_harga: true,
@@ -75,6 +76,7 @@ export async function fetchTotalRevenue() {
 
 export async function fetchMostSoldProduct() {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     const result = await prisma.transaksi.groupBy({
       by: ['id_produk'],
       _sum: {
@@ -92,9 +94,10 @@ export async function fetchMostSoldProduct() {
 
     const mostSoldProduct = await prisma.produk.findUnique({
       where: {
-        id_produk: result[0].id_produk,
+        id_produk: result[0].id_produk ?? undefined,
       },
     });
+
 
     return {
       ...mostSoldProduct,

@@ -1,21 +1,13 @@
-import {
-  UserIcon,
-  TagIcon,
-  ShoppingBagIcon,
-} from "@heroicons/react/24/outline";
+import { UserIcon, TagIcon, ShoppingBagIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import {
-  fetchProdukPrisma,
-  fetchTransaksiPrisma,
-  fetchTotalRevenue,
-  fetchMostSoldProduct,
-} from "@/app/lib/prisma";
+import { Suspense } from 'react';
+import { TransaksiSkeleton, ToProSkeleton, ToRevSkeleton, MostSkeleton } from '@/app/ui/skeletons';
+import { ProdukCardContent } from '@/app/ui/dashboard/produk';
+import { TransaksiContent } from '@/app/ui/dashboard/transaksi';
+import { RevenueContent } from '@/app/ui/dashboard/revenue';
+import { MostSoldContent } from '@/app/ui/dashboard/most';
 
 const DashboardStats = async () => {
-  const produkList = await fetchProdukPrisma();
-  const transaksiList = await fetchTransaksiPrisma();
-  const totalRevenue = await fetchTotalRevenue();
-  const mostSold = await fetchMostSoldProduct();
 
   return (
     <div className="">
@@ -30,60 +22,25 @@ const DashboardStats = async () => {
       {/* Stats Grid */}
       <div className="bg-yellow-100 rounded-3xl p-6 w-full h-full max-w-4xl mx-auto grid grid-cols-2 gap-4">
         {/* Total Transaksi */}
-        <div className="bg-yellow-200 border rounded-md col-span-3 sm:col-span-1">
-          <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
-            TOTAL TRANSAKSI
-          </div>
-          <div className="flex items-center justify-center space-x-2 py-6">
-            <TagIcon className="text-black h-16 w-16" />
-            <span className="font-bold text-black text-xl">
-              {transaksiList.length}
-            </span>
-          </div>
-        </div>
+        <Suspense fallback={<TransaksiSkeleton />}>
+          <TransaksiContent />
+        </Suspense>
 
         {/* Total Produk */}
-        <div className="bg-yellow-200 border rounded-md col-span-2 sm:col-span-1">
-          <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
-            JUMLAH PRODUK
-          </div>
-          <div className="flex items-center justify-center space-x-2 py-6">
-            <ShoppingBagIcon className="text-black h-16 w-16" />
-            <span className="font-bold text-black text-xl">
-              {produkList.length}
-            </span>
-          </div>
-        </div>
+        <Suspense fallback={<ToProSkeleton />}>
+          <ProdukCardContent />
+        </Suspense>
 
         {/* Total Revenue */}
-        <div className="bg-yellow-200 border rounded-md col-span-2">
-          <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
-            TOTAL PENDAPATAN
-          </div>
-          <div className="flex items-center justify-center py-6 text-xl font-bold text-black">
-            {totalRevenue.toLocaleString("id-ID", {
-              style: "currency",
-              currency: "IDR",
-            })}
-          </div>
-        </div>
+        <Suspense fallback={<ToRevSkeleton />}>
+          <RevenueContent />
+        </Suspense>
 
         {/* Most Sold Product */}
-        <div className="bg-yellow-200 border rounded-md col-span-2">
-          <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
-            PRODUK TERLARIS
-          </div>
-          <div className="flex flex-col items-center justify-center py-6 text-black text-center">
-            {mostSold ? (
-              <>
-                <span className="font-bold text-lg">{mostSold.nama_produk}</span>
-                <span className="text-sm">Terjual: {mostSold.total_terjual}x</span>
-              </>
-            ) : (
-              <span className="text-sm">Belum ada data</span>
-            )}
-          </div>
-        </div>
+        <Suspense fallback={<MostSkeleton />}>
+          <MostSoldContent />
+        </Suspense>
+
       </div>
     </div>
   );

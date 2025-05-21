@@ -1,9 +1,10 @@
 import { PencilIcon, TrashIcon, PlusIcon, ArrowLeftCircleIcon, ArrowRightCircleIcon, UserIcon } from "@heroicons/react/24/outline"
 import Link from 'next/link';
-import { fetchProdukPrisma } from '@/app/lib/prisma';
+import { TabelProdukContent } from '@/app/ui/table/tablep';
+import { Suspense } from 'react';
+import { TabelProdukSkeleton } from "@/app/ui/skeletons";
 
 const ProdukTable = async () => {
-    const produkList = await fetchProdukPrisma();
 
     return (
         <div>
@@ -22,41 +23,9 @@ const ProdukTable = async () => {
                     </button>
                 </div>
 
-                <table className="w-full text-sm text-left text-black border-collapse">
-                    <thead>
-                        <tr className="bg-gray-300">
-                            <th className="border px-3 py-2">ID</th>
-                            <th className="border px-3 py-2">NAMA PRODUK</th>
-                            <th className="border px-3 py-2">HARGA</th>
-                            <th className="border px-3 py-2">STOK</th>
-                            <th className="border px-3 py-2">FOTO</th>
-                            <th className="border px-3 py-2">AKSI</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {produkList.map((produk) => (
-                            <tr key={produk.id} className="bg-white">
-                                <td className="border px-3 py-2">{produk.id}</td>
-                                <td className="border px-3 py-2">{produk.name}</td>
-                                <td className="border px-3 py-2">{produk.price.toLocaleString('id-ID', { style: 'currency', currency: 'IDR' })}</td>
-                                <td className="border px-3 py-2">{produk.inv}</td>
-                                <td className="border px-3 py-2">
-                                    <img src={produk.img || ''} alt={produk.name} className="h-10 w-10 object-cover rounded" />
-                                </td>
-                                <td className="border px-3 py-2">
-                                    <div className="flex space-x-2">
-                                        <button className="p-1">
-                                            <PencilIcon className="w-4 h-4" />
-                                        </button>
-                                        <button className="p-1">
-                                            <TrashIcon className="w-4 h-4" />
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <Suspense fallback={<TabelProdukSkeleton />}>
+                    <TabelProdukContent />
+                </Suspense>
 
                 <div className="flex justify-center mt-4 space-x-2">
                     <button className=" rounded-full p-1">

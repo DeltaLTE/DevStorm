@@ -216,3 +216,136 @@ export function InvoicesTableSkeleton() {
     </div>
   );
 }
+
+// UGD
+export function TransaksiSkeleton() {
+  return (
+    <div className={`${shimmer} relative overflow-hidden bg-yellow-200 border rounded-md col-span-3 sm:col-span-1`}>
+      <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
+      </div>
+      <div className="flex items-center justify-center space-x-2 py-6">
+        <div className="text-black h-16 w-16" />
+        <div className="font-bold text-black text-xl" />
+      </div>
+    </div>
+  )
+}
+
+export function ToProSkeleton() {
+  return (
+    <div className={`${shimmer} relative overflow-hidden bg-yellow-200 border rounded-md col-span-2 sm:col-span-1`}>
+      <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
+      </div>
+      <div className="flex items-center justify-center space-x-2 py-6">
+        <span className="font-bold text-black text-xl">
+        </span>
+      </div>
+    </div>
+  )
+}
+
+export function ToRevSkeleton() {
+  return (
+    <div className={`${shimmer} relative overflow-hidden bg-yellow-200 border rounded-md col-span-2`}>
+      <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
+      </div>
+      <div className="flex items-center justify-center py-6 text-xl font-bold text-black">
+      </div>
+    </div>
+  )
+}
+
+export function TabelProdukSkeleton() {
+  return (
+    <div className={`${shimmer} relative overflow-hidden bg-yellow-200 border rounded-md col-span-2`}>
+      <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
+      </div>
+      <div className="flex flex-col items-center justify-center py-6 text-black text-center">
+      </div>
+    </div>
+  )
+}
+
+export function MostSkeleton() {
+  return (
+    <div className={`${shimmer} relative overflow-hidden bg-yellow-200 border rounded-md col-span-2`}>
+      <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
+      </div>
+      <div className="flex flex-col items-center justify-center py-6 text-black text-center">
+      </div>
+    </div>
+  )
+}
+
+export function TabelTransaksiSkeleton() {
+  return (
+    <table className={`${shimmer} relative w-full text-sm text-left text-black border-collapse`}>
+      <thead>
+        <tr className="bg-gray-300">
+          <th className="border px-3 py-2"></th>
+          <th className="border px-3 py-2"></th>
+          <th className="border px-3 py-2"></th>
+          <th className="border px-3 py-2"></th>
+          <th className="border px-3 py-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="bg-white">
+          <td className="border px-3 py-2"></td>
+          <td className="border px-3 py-2"></td>
+          <td className="border px-3 py-2"></td>
+
+          <td className="border px-3 py-2"></td>
+          <td className="border px-3 py-2">
+            <div className="flex space-x-2">
+              <button className="p-1">
+                <div className="w-4 h-4" />
+              </button>
+              <button className="p-1">
+                <div className="w-4 h-4" />
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  )
+}
+
+export function TableProdukSkeleton() {
+  return (
+    <table className="w-full text-sm text-left text-black border-collapse">
+                    <thead>
+                        <tr className="bg-gray-300">
+                            <th className="border px-3 py-2"></th>
+                            <th className="border px-3 py-2"></th>
+                            <th className="border px-3 py-2"></th>
+                            <th className="border px-3 py-2"></th>
+                            <th className="border px-3 py-2"></th>
+                            <th className="border px-3 py-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr className="bg-white">
+                                <td className="border px-3 py-2"></td>
+                                <td className="border px-3 py-2"></td>
+                                <td className="border px-3 py-2"></td>
+                                <td className="border px-3 py-2"></td>
+                                <td className="border px-3 py-2">
+                                    <div className="h-10 w-10 object-cover rounded" />
+                                </td>
+                                <td className="border px-3 py-2">
+                                    <div className="flex space-x-2">
+                                        <button className="p-1">
+                                            <div className="w-4 h-4" />
+                                        </button>
+                                        <button className="p-1">
+                                            <div className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                    </tbody>
+                </table>
+  )
+}
