@@ -41,6 +41,7 @@ export async function fetchProdukById(id: string): Promise<Produk | null> {
 
 export async function fetchTransaksiPrisma() {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 10000));
     const data = await prisma.transaksi.findMany({
     });
 
@@ -60,7 +61,7 @@ export async function fetchTransaksiPrisma() {
 
 export async function fetchTotalRevenue() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 10000));
     const result = await prisma.transaksi.aggregate({
       _sum: {
         total_harga: true,
