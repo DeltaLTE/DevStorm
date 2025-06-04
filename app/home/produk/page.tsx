@@ -32,7 +32,7 @@ export default async function Page({ params }: PageProps) {
         {produk.map((product, index) => (
           <ProductCard
             key={index}
-            id={product.id_produk}
+            id={product.id_produk.toString()}
             name={product.nama_produk}
             price={product.harga}
             image={product.foto}
