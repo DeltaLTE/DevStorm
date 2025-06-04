@@ -1,44 +1,24 @@
 import React from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { fetchProdukPrisma } from '@/app/lib/prisma';
-import Link from 'next/link'
+import ProductCard from '@/app/ui/home/card';
 
-const formatRupiah = (value: number) => {
-  return new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
-    minimumFractionDigits: 0,
-  }).format(value);
-};
+interface PageProps {
+  params: {
+    id: number;
+  };
+}
 
-const ProductCard = ({
-  id,
-  name,
-  price,
-  image,
-}: {
-  id: string;
-  name: string;
-  price: number;
-  image: string;
-}) => (
-  <div className="bg-white rounded-2xl p-2 shadow text-center">
-    <div className="bg-orange-400 rounded-xl p-2 mb-2">
-      <Link href={`/home/produk/${id}`}>
-        <img
-          src={image}
-          alt={name}
-          className="rounded-lg w-full h-32 object-contain"
-        />
-      </Link>
-    </div>
-    <h3 className="text-sm font-bold mb-1">{name}</h3>
-    <p className="font-semibold text-black">{formatRupiah(price)}</p>
-  </div>
-);
+export default async function Page({ params }: PageProps) {
+  const { id } = params;
 
-const ProductList = async () => {
+  // You can pass `category` to your fetch function or filter here
   const produk = await fetchProdukPrisma();
+
+  // Example filter (if category is meant to match a field like `kategori`)
+  const filteredProduk = produk.filter(
+    (product) => product.id_produk === id // assuming you have this field
+  );
 
   return (
     <div className="bg-yellow-400 min-h-screen p-6">
@@ -54,18 +34,16 @@ const ProductList = async () => {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {produk.map((product: any, index: number) => (
+        {(filteredProduk.length > 0 ? filteredProduk : produk).map((product, index) => (
           <ProductCard
-            id={product.id}
             key={index}
-            name={product.name}
-            price={product.price}
-            image={product.img}
+            id={product.id_produk}
+            name={product.nama_produk}
+            price={product.harga}
+            image={product.foto}
           />
         ))}
       </div>
     </div>
   );
-};
-
-export default ProductList;
+}
