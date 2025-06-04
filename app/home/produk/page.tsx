@@ -5,7 +5,7 @@ import ProductCard from '@/app/ui/home/card';
 
 interface PageProps {
   params: {
-    id: number;
+    id: string;
   };
 }
 
@@ -14,11 +14,6 @@ export default async function Page({ params }: PageProps) {
 
   // You can pass `category` to your fetch function or filter here
   const produk = await fetchProdukPrisma();
-
-  // Example filter (if category is meant to match a field like `kategori`)
-  const filteredProduk = produk.filter(
-    (product) => product.id_produk === id // assuming you have this field
-  );
 
   return (
     <div className="bg-yellow-400 min-h-screen p-6">
@@ -34,7 +29,7 @@ export default async function Page({ params }: PageProps) {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {(filteredProduk.length > 0 ? filteredProduk : produk).map((product, index) => (
+        {produk.map((product, index) => (
           <ProductCard
             key={index}
             id={product.id_produk}
