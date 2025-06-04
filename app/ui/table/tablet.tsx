@@ -7,7 +7,7 @@ export async function TabelTransaksiContent() {
     return (
         <table className="w-full text-sm text-left text-black border-collapse">
             <thead>
-                <tr className="bg-gray-300">
+                <tr className="bg-[#FFEB3B]">
                     <th className="border px-3 py-2">ID</th>
                     <th className="border px-3 py-2">NAMA PELANGGAN</th>
                     <th className="border px-3 py-2">TANGGAL </th>

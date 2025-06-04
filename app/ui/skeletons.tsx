@@ -257,66 +257,9 @@ export function ToRevSkeleton() {
 
 export function TabelProdukSkeleton() {
   return (
-    <div className={`${shimmer} relative overflow-hidden bg-yellow-200 border rounded-md col-span-2`}>
-      <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
-      </div>
-      <div className="flex flex-col items-center justify-center py-6 text-black text-center">
-      </div>
-    </div>
-  )
-}
-
-export function MostSkeleton() {
-  return (
-    <div className={`${shimmer} relative overflow-hidden bg-yellow-200 border rounded-md col-span-2`}>
-      <div className="bg-orange-500 rounded-t-md text-center py-2 text-white font-bold">
-      </div>
-      <div className="flex flex-col items-center justify-center py-6 text-black text-center">
-      </div>
-    </div>
-  )
-}
-
-export function TabelTransaksiSkeleton() {
-  return (
-    <table className={`${shimmer} relative w-full text-sm text-left text-black border-collapse`}>
-      <thead>
-        <tr className="bg-gray-300">
-          <th className="border px-3 py-2"></th>
-          <th className="border px-3 py-2"></th>
-          <th className="border px-3 py-2"></th>
-          <th className="border px-3 py-2"></th>
-          <th className="border px-3 py-2"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr className="bg-white">
-          <td className="border px-3 py-2"></td>
-          <td className="border px-3 py-2"></td>
-          <td className="border px-3 py-2"></td>
-
-          <td className="border px-3 py-2"></td>
-          <td className="border px-3 py-2">
-            <div className="flex space-x-2">
-              <button className="p-1">
-                <div className="w-4 h-4" />
-              </button>
-              <button className="p-1">
-                <div className="w-4 h-4" />
-              </button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  )
-}
-
-export function TableProdukSkeleton() {
-  return (
     <table className="w-full text-sm text-left text-black border-collapse">
                     <thead>
-                        <tr className="bg-gray-300">
+                        <tr className="bg-[#FFEB3B]">
                             <th className="border px-3 py-2"></th>
                             <th className="border px-3 py-2"></th>
                             <th className="border px-3 py-2"></th>
@@ -347,5 +290,51 @@ export function TableProdukSkeleton() {
                             </tr>
                     </tbody>
                 </table>
+  )
+}
+
+export function MostSkeleton() {
+  return (
+    <div className={`${shimmer} relative overflow-hidden bg-white border rounded-md col-span-2`}>
+      <div className="bg-[#FFEB3B] rounded-t-md text-center py-2 text-white font-bold">
+      </div>
+      <div className="flex flex-col items-center justify-center py-6 text-black text-center">
+      </div>
+    </div>
+  )
+}
+
+export function TabelTransaksiSkeleton() {
+  return (
+    <table className={`${shimmer} relative overflow-hidden w-full text-sm text-left text-black border-collapse`}>
+      <thead>
+        <tr className="bg-[#FFEB3B]">
+          <th className="border px-3 py-2"></th>
+          <th className="border px-3 py-2"></th>
+          <th className="border px-3 py-2"></th>
+          <th className="border px-3 py-2"></th>
+          <th className="border px-3 py-2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="bg-white">
+          <td className="border px-3 py-2"></td>
+          <td className="border px-3 py-2"></td>
+          <td className="border px-3 py-2"></td>
+
+          <td className="border px-3 py-2"></td>
+          <td className="border px-3 py-2">
+            <div className="flex space-x-2">
+              <button className="p-1">
+                <div className="w-4 h-4" />
+              </button>
+              <button className="p-1">
+                <div className="w-4 h-4" />
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   )
 }
