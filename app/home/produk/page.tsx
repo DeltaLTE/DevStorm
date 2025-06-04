@@ -3,11 +3,11 @@ import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { fetchProdukPrisma } from '@/app/lib/prisma';
 import ProductCard from '@/app/ui/home/card';
 
-type Props = {
+type PageProps = {
   params: Promise<{ id: string }>
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: PageProps) {
 
   // You can pass `category` to your fetch function or filter here
   const produk = await fetchProdukPrisma();
