@@ -10,7 +10,8 @@ type PageProps = {
 };
 
 const ProductDetailPage = async ({ params }: PageProps) => {
-  const product = await fetchProdukById(params.id);
+  const Params = await params
+  const product = await fetchProdukById(Params.id);
 
   if (!product) return notFound();
 
