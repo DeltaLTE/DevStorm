@@ -1,9 +1,15 @@
-import { fetchProdukById } from '@/app/lib/prisma'; // you need to implement this
+import { fetchProdukById } from '@/app/lib/prisma';
 import { notFound } from 'next/navigation';
-import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline'
+import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
-const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
+type PageProps = {
+  params: {
+    id: string;
+  };
+};
+
+const ProductDetailPage = async ({ params }: PageProps) => {
   const product = await fetchProdukById(params.id);
 
   if (!product) return notFound();
@@ -18,10 +24,9 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
   return (
     <div className="min-h-screen bg-[#fbe122] text-black font-sans">
       <Link href="/home/produk">
-        <ArrowLeftCircleIcon className='w-10 h-10' />
+        <ArrowLeftCircleIcon className="w-10 h-10" />
       </Link>
       <div className="max-w-6xl mx-auto p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
-
         <div className="flex flex-col items-center">
           <div className="w-72 h-72 border-4 border-[#d72323] rounded-lg shadow-md bg-white">
             <img src={product.foto} alt={product.nama_produk} className="object-contain w-full h-full p-2" />
