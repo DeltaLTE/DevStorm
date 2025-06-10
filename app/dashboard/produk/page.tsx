@@ -18,7 +18,7 @@ const ProdukTable = async () => {
                         placeholder="Cari produk"
                         className="border border-gray-400 rounded px-3 py-1 w-1/3"
                     />
-                    <Link className="flex items-center bg-green-500 text-white px-3 py-1 rounded-full text-sm" href="dashboard/produk/create">
+                    <Link className="flex items-center bg-green-500 text-white px-3 py-1 rounded-full text-sm" href="produk/create">
                         <PlusIcon className="w-4 h-4 mr-1" /> TAMBAH
                     </Link>
                 </div>

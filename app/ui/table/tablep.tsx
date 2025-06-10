@@ -1,5 +1,7 @@
 import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline"
 import { fetchProdukPrisma } from "@/app/lib/prisma";
+import { deleteProduk } from '@/app/lib/actions'
+import { UpdateProduk } from '@/app/ui/produk/button'
 
 
 export async function TabelProdukContent() {
@@ -28,12 +30,14 @@ export async function TabelProdukContent() {
                         </td>
                         <td className="border px-3 py-2">
                             <div className="flex space-x-2">
-                                <button className="p-1">
-                                    <PencilIcon className="w-4 h-4" />
-                                </button>
-                                <button className="p-1">
-                                    <TrashIcon className="w-4 h-4" />
-                                </button>
+                                <UpdateProduk id={produk.id_produk} />
+                                <form action={deleteProduk}>
+                                    <input type="hidden" name="id_produk" value={produk.id_produk} />
+                                    <button className="p-1" type="submit" aria-label={`Delete product ${produk.nama_produk}`}>
+                                        <TrashIcon className="w-4 h-4" />
+                                    </button>
+                                </form>
+
                             </div>
                         </td>
                     </tr>

@@ -8,48 +8,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model customers {
-  id        String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name      String @db.VarChar(255)
-  email     String @db.VarChar(255)
-  image_url String @db.VarChar(255)
-}
-
-model invoices {
-  id          String   @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  customer_id String   @db.Uuid
-  amount      Int
-  status      String   @db.VarChar(255)
-  date        DateTime @db.Date
-}
-
-model revenue {
-  month   String @unique @db.VarChar(4)
-  revenue Int
-}
-
-model users {
-  id       String @id @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  name     String @db.VarChar(255)
-  email    String @unique
-  password String
-}
-
 model produk {
   id_produk   Int         @id @default(autoincrement())
-  nama_produk String      @db.VarChar(255)
-  harga       Int
-  stok        Int
-  foto        String      @db.VarChar(255)
-  deskripsi   String
+  nama_produk String?     @db.VarChar(255)
+  harga       Int?
+  stok        Int?        @db.SmallInt
+  foto        String?     @db.VarChar(255)
+  deskripsi   String?
   transaksi   transaksi[]
 }
 
 model transaksi {
-  id_transaksi Int       @id @default(autoincrement())
-  nama_pembeli String?   @db.VarChar(255)
-  tanggal      DateTime? @db.Date
-  total_harga  Int?
-  id_produk    Int?
-  produk       produk?   @relation(fields: [id_produk], references: [id_produk], onDelete: NoAction, onUpdate: NoAction, map: "id_produk")
+  id_transaksi      Int       @id @default(autoincrement())
+  nama_pelanggan    String?   @db.VarChar(255)
+  total_harga       Int?
+  tanggal_transaksi DateTime? @db.Date
+  id_produk         Int?
+  produk            produk?   @relation(fields: [id_produk], references: [id_produk], onDelete: NoAction, onUpdate: NoAction, map: "id_produk")
 }

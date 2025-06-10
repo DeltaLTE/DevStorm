@@ -20,12 +20,12 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 6.7.0
- * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
+ * Prisma Client JS version: 6.8.1
+ * Query Engine version: 2060c79ba17c6bb9f5823312b6f6b7f4a845738e
  */
 Prisma.prismaVersion = {
-  client: "6.7.0",
-  engine: "3cff47a7f5d65c3ea74883f1d736e41d68ce91ed"
+  client: "6.8.1",
+  engine: "2060c79ba17c6bb9f5823312b6f6b7f4a845738e"
 }
 
 Prisma.PrismaClientKnownRequestError = () => {
@@ -120,33 +120,6 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.CustomersScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  image_url: 'image_url'
-};
-
-exports.Prisma.InvoicesScalarFieldEnum = {
-  id: 'id',
-  customer_id: 'customer_id',
-  amount: 'amount',
-  status: 'status',
-  date: 'date'
-};
-
-exports.Prisma.RevenueScalarFieldEnum = {
-  month: 'month',
-  revenue: 'revenue'
-};
-
-exports.Prisma.UsersScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  email: 'email',
-  password: 'password'
-};
-
 exports.Prisma.ProdukScalarFieldEnum = {
   id_produk: 'id_produk',
   nama_produk: 'nama_produk',
@@ -158,9 +131,9 @@ exports.Prisma.ProdukScalarFieldEnum = {
 
 exports.Prisma.TransaksiScalarFieldEnum = {
   id_transaksi: 'id_transaksi',
-  nama_pembeli: 'nama_pembeli',
-  tanggal: 'tanggal',
+  nama_pelanggan: 'nama_pelanggan',
   total_harga: 'total_harga',
+  tanggal_transaksi: 'tanggal_transaksi',
   id_produk: 'id_produk'
 };
 
@@ -181,10 +154,6 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  customers: 'customers',
-  invoices: 'invoices',
-  revenue: 'revenue',
-  users: 'users',
   produk: 'produk',
   transaksi: 'transaksi'
 };

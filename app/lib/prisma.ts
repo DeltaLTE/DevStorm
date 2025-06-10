@@ -50,8 +50,8 @@ export async function fetchTransaksiPrisma() {
 
     const Transaksi = data.map((transaksi) => ({
       id_transaksi: transaksi.id_transaksi,
-      nama_pembeli: transaksi.nama_pembeli,
-      tanggal: transaksi.tanggal,
+      nama_pembeli: transaksi.nama_pelanggan,
+      tanggal: transaksi.tanggal_transaksi,
       total_harga: transaksi.total_harga,
     })) as unknown as Transaksi[];
 

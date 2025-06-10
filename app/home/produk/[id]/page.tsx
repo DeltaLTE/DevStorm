@@ -3,11 +3,7 @@ import { notFound } from 'next/navigation';
 import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link';
 
-type Props = {
-  params: { id: string };
-};
-
-const ProductDetailPage = async ({ params }: Props) => {
+const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
   const product = await fetchProdukById(params.id);
 
   if (!product) return notFound();
