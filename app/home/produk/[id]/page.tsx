@@ -9,9 +9,8 @@ type PageProps = {
   };
 };
 
-const ProductDetailPage = async ({ params }: PageProps) => {
-  const Params = await params
-  const product = await fetchProdukById(Params.id);
+export default async function ProductDetailPage({ params }: PageProps) {
+  const product = await fetchProdukById(params.id);
 
   if (!product) return notFound();
 
@@ -43,6 +42,4 @@ const ProductDetailPage = async ({ params }: PageProps) => {
       </div>
     </div>
   );
-};
-
-export default ProductDetailPage;
+}
