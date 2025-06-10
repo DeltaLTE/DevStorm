@@ -1,13 +1,36 @@
-import { fetchProdukById } from '@/app/lib/prisma';
 import { notFound } from 'next/navigation';
 import { ArrowLeftCircleIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+type Produk = {
+  id_produk: number;
+  nama_produk: string;
+  harga: number;
+  deskripsi: string;
+  foto: string;
+};
 
 type PageProps = {
   params: {
     id: string;
   };
 };
+
+async function fetchProdukById(id: string): Promise<Produk | null> {
+  try {
+    const produk = await prisma.produk.findUnique({
+      where: { id_produk: Number(id) },
+    });
+
+    return produk; // no mapping, just return as-is
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch produk by ID.");
+  }
+}
 
 export default async function ProductDetailPage({ params }: PageProps) {
   const product = await fetchProdukById(params.id);

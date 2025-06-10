@@ -27,18 +27,7 @@ export async function fetchProdukPrisma() {
   }
 }
 
-export async function fetchProdukById(id: string): Promise<Produk | null> {
-  try {
-    const produk = await prisma.produk.findUnique({
-      where: { id_produk: Number(id) },
-    });
 
-    return produk; // no mapping, just return as-is
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch produk by ID.");
-  }
-}
 
 
 
