@@ -1,10 +1,12 @@
-// app/api/produk/[id]/route.ts
 import { PrismaClient } from '@/generated/prisma';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(
+  req: NextRequest,
+  params: { id: string } 
+) {
   const id = parseInt(params.id, 10);
 
   if (isNaN(id)) {
@@ -12,7 +14,7 @@ export async function GET(req: Request, { params }: { params: { id: string } }) 
   }
 
   const product = await prisma.produk.findUnique({
-    where: { id_produk: id }, // ✅ use id_produk, not id
+    where: { id_produk: id },
   });
 
   if (!product) {
