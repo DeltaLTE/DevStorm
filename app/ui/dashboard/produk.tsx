@@ -3,7 +3,7 @@ import { fetchProdukPrisma } from '@/app/lib/prisma';
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 
 export async function ProdukCardContent() {
-  const produkList = await fetchProdukPrisma();
+  const { produk, total } = await fetchProdukPrisma();
 
   return (
     <div className="bg-yellow-200 border rounded-md col-span-2 sm:col-span-1">
@@ -13,7 +13,7 @@ export async function ProdukCardContent() {
       <div className="flex items-center justify-center space-x-2 py-6">
         <ShoppingBagIcon className="text-black h-16 w-16" />
         <span className="font-bold text-black text-xl">
-          {produkList.length}
+          {total}
         </span>
       </div>
     </div>
