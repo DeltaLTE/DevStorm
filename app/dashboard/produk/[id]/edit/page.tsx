@@ -3,9 +3,16 @@ import EditProdukForm from '@/app/ui/produk/edit-produk'
 
 const prisma = new PrismaClient();
 
-export default async function EditProdukPage({ params }: { params: { id: string } }) {
+export default async function EditProdukPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string }> 
+}) {
+  // Await the params Promise to get the actual parameters
+  const { id } = await params;
+  
   const produk = await prisma.produk.findUnique({
-    where: { id_produk: Number(params.id) },
+    where: { id_produk: Number(id) },
   })
 
   if (!produk) return <div>Produk not found</div>
