@@ -8,14 +8,14 @@ const prisma = new PrismaClient();
 
 export async function fetchProdukPrisma(search?: string, skip: number = 0, take: number = 8) {
   try {
-    const where: Prisma.produkWhereInput = search
-      ? {
-          nama_produk: {
-            contains: search,
-            mode: 'insensitive' as const,
-          },
-        }
-      : {};
+    const where = search
+  ? {
+      nama_produk: {
+        contains: search,
+        mode: 'insensitive' as const
+      }
+    }
+  : {};
 
     const [data, total] = await Promise.all([
       prisma.produk.findMany({
