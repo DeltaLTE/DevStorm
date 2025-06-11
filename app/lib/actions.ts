@@ -1,6 +1,6 @@
 'use server';
 
-import { PrismaClient } from '@/generated/prisma';
+import { PrismaClient } from '@prisma/client';
 import { writeFile } from 'fs/promises';
 import path from 'path';
 import { redirect } from 'next/navigation';
