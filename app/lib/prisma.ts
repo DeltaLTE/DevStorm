@@ -152,3 +152,24 @@ export async function POST(req: NextRequest) {
 
   return NextResponse.redirect(new URL('/dashboard/produk', req.url));
 }
+
+export async function GET(
+  req: NextRequest,
+  context: { params: { id: string } }
+) {
+  const id = parseInt(context.params.id, 10);
+
+  if (isNaN(id)) {
+    return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+  }
+
+  const product = await prisma.produk.findUnique({
+    where: { id_produk: id },
+  });
+
+  if (!product) {
+    return NextResponse.json({ error: 'Product not found' }, { status: 404 });
+  }
+
+  return NextResponse.json(product);
+}
