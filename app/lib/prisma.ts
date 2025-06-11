@@ -50,7 +50,7 @@ export async function fetchTransaksiPrisma() {
     const data = await prisma.transaksi.findMany({
     });
 
-    const Transaksi = data.map((transaksi) => ({
+    const Transaksi = data.map((transaksi: Transaksi) => ({
       id_transaksi: transaksi.id_transaksi,
       nama_pembeli: transaksi.nama_pelanggan,
       tanggal: transaksi.tanggal_transaksi,
