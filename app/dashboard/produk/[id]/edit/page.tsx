@@ -1,4 +1,4 @@
-import { PrismaClient } from '@/generated/prisma';
+import { PrismaClient } from '@prisma/client';
 import EditProdukForm from '@/app/ui/produk/edit-produk'
 
 const prisma = new PrismaClient();
