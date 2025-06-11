@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { writeFile } from 'fs/promises';
 import path from 'path';
-import { PrismaClient, Prisma } from '@prisma/client';
+import { PrismaClient, produk } from '@prisma/client';
 import { Produk, Transaksi } from "@/app/lib/definitions"
 
 const prisma = new PrismaClient();
@@ -27,7 +27,7 @@ export async function fetchProdukPrisma(search?: string, skip: number = 0, take:
       prisma.produk.count({ where }),
     ]);
 
-    const Produk = data.map((produk) => ({
+    const Produk = data.map((produk: produk) => ({
       id_produk: produk.id_produk,
       nama_produk: produk.nama_produk,
       harga: produk.harga,
