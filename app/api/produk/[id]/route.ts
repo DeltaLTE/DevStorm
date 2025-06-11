@@ -7,7 +7,8 @@ export async function GET(
   request: NextRequest,
   context: { params: Promise <{ id: string }> }
 ) {
-  const id = parseInt(context.params.id, 10);
+  const newparams = await context
+  const id = parseInt(newparams.id, 10);
 
   if (isNaN(id)) {
     return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
