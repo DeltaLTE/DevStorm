@@ -5,11 +5,12 @@ import { Suspense } from 'react';
 import { TabelProdukSkeleton } from "@/app/ui/skeletons";
 
 type ProdukTableProps = {
-  searchParams: { search?: string };
+  searchParams: Promise<{ search?: string }>;
 };
 
 const ProdukTable = async ({ searchParams }: ProdukTableProps) => {
-  const search = searchParams.search || '';
+  const { search: searchQuery } = await searchParams;
+  const search = searchQuery || '';
 
   return (
     <div>
