@@ -6,10 +6,13 @@ import Link from 'next/link';
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { search?: string; page?: string };
+  searchParams: Promise<{ search?: string; page?: string }>;
 }) {
-  const searchQuery = searchParams.search || '';
-  const page = parseInt(searchParams.page || '1', 10);
+  // Await the searchParams Promise to get the actual search parameters
+  const { search, page: pageParam } = await searchParams;
+  
+  const searchQuery = search || '';
+  const page = parseInt(pageParam || '1', 10);
   const limit = 8;
   const offset = (page - 1) * limit;
 
