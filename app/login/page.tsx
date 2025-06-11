@@ -1,21 +1,46 @@
 'use client';
 
-import { useState } from 'react';
-import styles from '@/app/ui/login.module.css';
+import { useState, useEffect } from 'react';
 import { EyeSlashIcon, EyeIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link'
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function LoginForm() {
   const [user, setUser] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [captchaError, setCaptchaError] = useState(''); // State for CAPTCHA error
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [captchaCode, setCaptchaCode] = useState(''); // State for generated CAPTCHA code
+  const [userCaptchaInput, setUserCaptchaInput] = useState(''); // State for user's CAPTCHA input
 
-  // Toggle visibility password
+  // Generate a random 5-character CAPTCHA code
+  const generateCaptchaCode = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let code = '';
+    for (let i = 0; i < 5; i++) {
+      code += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return code;
+  };
+
+  // Initialize CAPTCHA code when component mounts
+  useEffect(() => {
+    setCaptchaCode(generateCaptchaCode());
+  }, []);
+
+  // Toggle password visibility
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
+  };
+
+  // Handle CAPTCHA refresh
+  const refreshCaptcha = () => {
+    setCaptchaCode(generateCaptchaCode());
+    setUserCaptchaInput(''); // Clear user input
+    setCaptchaError(''); // Clear CAPTCHA error
   };
 
   // Handle submit form
@@ -23,11 +48,12 @@ export default function LoginForm() {
     e.preventDefault();
     setEmailError('');
     setPasswordError('');
+    setCaptchaError('');
     setIsLoading(true);
 
     let hasError = false;
 
-    // Validasi email
+    // Validate username
     if (!user.trim()) {
       setEmailError('USERNAME KOSONG');
       hasError = true;
@@ -36,7 +62,7 @@ export default function LoginForm() {
       hasError = true;
     }
 
-    // Validasi password
+    // Validate password
     if (!password.trim()) {
       setPasswordError('PASSWORD KOSONG');
       hasError = true;
@@ -45,83 +71,177 @@ export default function LoginForm() {
       hasError = true;
     }
 
-    // Jika ada error, stop submit
+    // Validate CAPTCHA
+    if (!userCaptchaInput.trim()) {
+      setCaptchaError('Please enter the CAPTCHA code');
+      hasError = true;
+    } else if (userCaptchaInput !== captchaCode) {
+      setCaptchaError('CAPTCHA code is incorrect');
+      hasError = true;
+    }
+
+    // If there are errors, stop submission
     if (hasError) {
       setIsLoading(false);
       return;
     }
 
-    // Simulasi proses login
+    // Simulate login process
     setTimeout(() => {
-      console.log('Login success with:', user, password);
-      if (user == 'admin123') {
-        location.href = "/dashboard"
+      console.log('Login success with:', user, password, 'CAPTCHA:', userCaptchaInput);
+      if (user === 'admin123') {
+        location.href = '/dashboard';
       } else {
-        location.href = "/home"
+        location.href = '/home';
       }
       setIsLoading(false);
+      // Reset CAPTCHA after successful submission
+      setCaptchaCode(generateCaptchaCode());
+      setUserCaptchaInput('');
     }, 1000);
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <form className={styles.loginBox} onSubmit={handleSubmit}>
-        <h2 className={styles.loginTitle}>LOGIN</h2>
+    <>
+      {/* Load Google Fonts directly */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+        .font-luckiest-guy {
+          font-family: 'Luckiest Guy', cursive;
+        }
+        .captcha-container {
+          position: relative;
+          display: inline-block;
+          background-color: #f0f0f0;
+          padding: 10px;
+          border-radius: 8px;
+          border: 2px solid #ccc;
+          user-select: none;
+        }
+        .captcha-text {
+          font-size: 24px;
+          letter-spacing: 5px;
+          color: #333;
+          text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+          position: relative;
+          z-index: 1;
+        }
+        .captcha-noise {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAJElEQVQImWM4ceLEf/78+cv379//4cOH/wMHDvznz5//zZs3FQEw6RLV7vUo2QAAAABJRU5ErkJggg==') repeat;
+          opacity: 0.3;
+          pointer-events: none;
+        }
+        .refresh-button {
+          margin-left: 10px;
+          cursor: pointer;
+          color: #007bff;
+          font-size: 14px;
+        }
+        .refresh-button:hover {
+          text-decoration: underline;
+        }
+      `}</style>
 
-        {/* USERNAME */}
-        <div className={styles.inputWrapper}>
-          <input
-            type="text"
-            placeholder="USERNAME"
-            value={user}
-            onChange={(e) => setUser(e.target.value)}
-            className={styles.inputField}
-          />
-          {emailError && <span className={styles.errorTag}>{emailError}</span>}
-        </div>
-
-        {/* PASSWORD */}
-        <div className={styles.inputWrapper} style={{ position: 'relative' }}>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            placeholder="PASSWORD"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={styles.inputField}
-            style={{ paddingRight: '40px' }}
-          />
-          <div
-            onClick={togglePasswordVisibility}
-            style={{
-              position: 'absolute',
-              top: '50%',
-              right: '10px',
-              transform: 'translateY(-50%)',
-              cursor: 'pointer',
-              color: '#666',
-            }}
-          >
-            {showPassword ? (
-              <EyeSlashIcon className="w-5 h-5" />
-            ) : (
-              <EyeIcon className="w-5 h-5" />
-            )}
+      <div className="relative min-h-screen flex items-center justify-center font-luckiest-guy">
+        {/* Background Image with Smaller Wrapper */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-[1000px] h-[1000px] relative">
+            <Image
+              src="/bg-login.png"
+              alt="Login Background"
+              fill
+              className="z-0 object-contain object-center"
+            />
           </div>
-          {passwordError && <span className={styles.errorTag}>{passwordError}</span>}
         </div>
 
+        {/* Form Container */}
+        <div className="relative z-10 flex items-center justify-center w-full">
+          <form className="bg-yellow-100 p-6 rounded-3xl shadow-lg w-96" onSubmit={handleSubmit}>
+            <h2 className="text-2xl font-bold text-center mb-6">LOGIN</h2>
 
+            {/* USERNAME */}
+            <div className="mb-4">
+              <input
+                type="text"
+                placeholder="USERNAME"
+                value={user}
+                onChange={(e) => setUser(e.target.value)}
+                className="w-full p-2 border rounded bg-yellow-50"
+              />
+              {emailError && <span className="text-red-500 text-xs ml-2">{emailError}</span>}
+            </div>
 
-        {/* BUTTON */}
-        <button type="submit" className={styles.buttonLogin} disabled={isLoading}>
-          {isLoading ? 'Logging in...' : 'LOGIN'}
-        </button>
+            {/* PASSWORD */}
+            <div className="mb-4 relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                placeholder="PASSWORD"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-2 border rounded bg-yellow-50 pr-10"
+              />
+              <div
+                onClick={togglePasswordVisibility}
+                className="absolute top-1/2 right-2 transform -translate-y-1/2 cursor-pointer text-gray-500"
+              >
+                {showPassword ? (
+                  <EyeSlashIcon className="w-5 h-5" />
+                ) : (
+                  <EyeIcon className="w-5 h-5" />
+                )}
+              </div>
+              {passwordError && <span className="text-red-500 text-xs ml-2">{passwordError}</span>}
+            </div>
 
-        {/* LINK REGISTER */}
-        <p className={styles.registerLink}>
-          DON’T HAVE AN ACCOUNT? <Link href="/login/register">REGISTER</Link>
-        </p>
-      </form>
-    </div>
+            {/* Custom CAPTCHA */}
+            <div className="mb-4">
+              <div className="flex items-center mb-2">
+                <div className="captcha-container">
+                  <span className="captcha-text">{captchaCode}</span>
+                  <div className="captcha-noise"></div>
+                </div>
+                <span
+                  onClick={refreshCaptcha}
+                  className="refresh-button"
+                >
+                  Refresh
+                </span>
+              </div>
+              <input
+                type="text"
+                placeholder="Enter CAPTCHA code"
+                value={userCaptchaInput}
+                onChange={(e) => setUserCaptchaInput(e.target.value)}
+                className="w-full p-2 border rounded bg-yellow-50"
+              />
+              {captchaError && <span className="text-red-500 text-xs ml-2">{captchaError}</span>}
+            </div>
+
+            {/* BUTTON */}
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white px-4 py-2 rounded disabled:bg-blue-300"
+              disabled={isLoading}
+            >
+              {isLoading ? 'Logging in...' : 'LOGIN'}
+            </button>
+
+            {/* LINK REGISTER */}
+            <p className="text-center mt-4">
+              DON’T HAVE AN ACCOUNT?{' '}
+              <Link href="/login/register" className="text-blue-500">
+                REGISTER
+              </Link>
+            </p>
+          </form>
+        </div>
+      </div>
+    </>
   );
 }

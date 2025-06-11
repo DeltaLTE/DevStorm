@@ -18,9 +18,9 @@ const TransaksiTable = async () => {
                         placeholder="Cari transaksi"
                         className="border border-gray-400 rounded px-3 py-1 w-1/3"
                     />
-                    <button className="flex items-center bg-green-500 text-white px-3 py-1 rounded-full text-sm">
+                    <Link className="flex items-center bg-green-500 text-white px-3 py-1 rounded-full text-sm" href={"transaksi/create"}>
                         <PlusIcon className="w-4 h-4 mr-1" /> TAMBAH
-                    </button>
+                    </Link>
                 </div>
 
                 <Suspense fallback={<TabelTransaksiSkeleton />}>

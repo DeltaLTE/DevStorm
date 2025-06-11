@@ -95,3 +95,37 @@ export async function updateProduk(id_produk: number, formData: FormData): Promi
 
   redirect('/dashboard/produk');
 }
+
+export async function createTransaksi(formData: FormData) {
+  const nama_produk = formData.get('nama_produk') as string;
+  const harga = parseInt(formData.get('harga') as string, 10);
+  const stok = parseInt(formData.get('stok') as string, 10);
+  const deskripsi = formData.get('deskripsi') as string;
+  const fotoFile = formData.get('foto') as File;
+
+  if (!fotoFile || !fotoFile.size) {
+    throw new Error('No image uploaded');
+  }
+
+  const bytes = await fotoFile.arrayBuffer();
+  const buffer = Buffer.from(bytes);
+
+  const fileName = `${Date.now()}-${fotoFile.name}`;
+  const filePath = path.join(process.cwd(), 'public', fileName);
+
+  await writeFile(filePath, buffer);
+
+  const fotoPath = `/${fileName}`;
+
+  await prisma.produk.create({
+    data: {
+      nama_produk,
+      harga,
+      stok,
+      deskripsi,
+      foto: fotoPath,
+    },
+  });
+
+  redirect('/dashboard/produk'); // change this to wherever your read page is
+}
