@@ -1,51 +1,81 @@
-import Image from 'next/image'
+'use client';
 
-export default function Page() {
-    return (
-            <main className="mt-8 p-20">
-                <section>
-                    <h2 className="text-xl mb-2">COMPANY DESCRIPTION:</h2>
-                    <p>
-                        LOLMART: Your one-stop shop for unique & fun creations!<br />
-                        At LOLMART, we believe life should be full of laughter, surprises, and self-expression. That’s why we specialize in selling custom-made unique items, prank tools, quirky accessories, stylish hoodies & apparel, and one-of-a-kind snacks that you won’t find anywhere else!
-                    </p>
-                    <p className="mt-2">
-                        Our mission is to bring fun and creativity into everyday life with products that spark joy, create unforgettable moments, and let you express your unique personality. Whether you’re looking for the perfect prank, a bold fashion statement, or a snack that challenges your taste buds, LOLMART has got you covered!
-                    </p>
-                </section>
+import React from 'react';
 
-                <section>
-                    <br/>
-                    <h2 className="text-xl mb-2">OFFLINE STORE ADDRESS:</h2>
-                    <p>Jl. Seturan RT.III Depok, Sleman Yogyakarta</p>
-                </section>
+const About = () => {
+  return (
+    <>
+      {/* Load Google Fonts directly */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+        .font-luckiest {
+          font-family: 'Luckiest Guy', sans-serif;
+          color: black;
+        }
+      `}</style>
 
-                <section>
-                    <br/>
-                    <h1>Anggota Kelompok:</h1>
-                    <div className='flex justify-between'>
-                        <div className='p-2'>
-                            <Image src='/kayla.jpg' alt='gambar fortuna' width={500} height={500}></Image>
-                            <h2>Chaila Zefanya W.</h2>
-                        </div>
+      <div className="bg-white text-center">
+        {/* Header */}
+        <header className="flex justify-between items-center bg-yellow-400 p-4 text-white">
+        </header>
 
-                        <div className='p-2'>
-                            <Image src='/fortun.jpeg' alt='gambar fortuna' width={500} height={500}></Image>
-                            <h2>Fortuna Natalina S.</h2>
-                        </div>
+        {/* Company Description Section */}
+        <br />
+        <section className="bg-yellow-200 p-5 mt-11 rounded-[140px]"> {/* Menggunakan rounded-[20px] untuk lekukan lebih besar */}
+          <h2 className="text-2xl font-luckiest">COMPANY DESCRIPTION:</h2>
+          <br />
+          <p className="text-lg font-luckiest">
+            LOLMART: YOUR ONE-STOP SHOP FOR UNIQUE & FUN CREATIONS! AT LOLMART, WE BELIEVE LIFE SHOULD BE FULL OF LAUGHTER, SURPRISES, AND SELF-EXPRESSION. THAT'S WHY WE SPECIALIZE IN SELLING CUSTOM-MADE UNIQUE ITEMS, PRANK TOOLS, QUIRKY ACCESSORIES, STYLISH HOODIES & APPAREL, AND ONE-OF-A-KIND SNACKS THAT YOU WON'T FIND ANYWHERE ELSE!
+          </p>
+          <br />
+          <p className="text-lg font-luckiest">
+            OUR MISSION IS TO BRING FUN AND CREATIVITY INTO EVERYDAY LIFE WITH PRODUCTS THAT SPARK JOY, CREATE UNFORGETTABLE MOMENTS, AND LET YOU EXPRESS YOUR UNIQUE PERSONALITY. WHETHER YOU'RE LOOKING FOR THE PERFECT PRANK, A BOLD FASHION STATEMENT, OR A SNACK THAT CHALLENGES YOUR TASTE BUDS, LOLMART HAS GOT YOU COVERED!
+          </p>
+        </section>
 
-                        <div className='p-2'>
-                            <Image src='/prilla.jpg' alt='gambar fortuna' width={500} height={500}></Image>
-                            <h2>Prilla Diah Mawarni</h2>
-                        </div>
+        {/* Management Team Section */}
+        <br />
+        <section className="bg-yellow-200 p-3 rounded-[140px]"> {/* Menggunakan rounded-[20px] untuk lekukan lebih besar */}
+          <h2 className="text-2xl font-luckiest">MANAGEMENT TEAM:</h2>
+          <div className="flex justify-around flex-wrap mt-4">
+            <div className="text-center m-2">
+              <img
+                src="/kayla.jpg" // Ganti dengan path gambar yang sesuai
+                alt="Kayla"
+                className="h-32 w-32 rounded-full mx-auto object-cover"
+              />
+              <p className="mt-2 font-luckiest">KAYLA</p>
+            </div>
+            <div className="text-center m-2">
+              <img
+                src="/prilla.jpg" // Ganti dengan path gambar yang sesuai
+                alt="Prilla"
+                className="h-32 w-32 rounded-full mx-auto object-cover"
+              />
+              <p className="mt-2 font-luckiest">PRILLA</p>
+            </div>
+            <div className="text-center m-2">
+              <img
+                src="/jose.jpeg" // Ganti dengan path gambar yang sesuai
+                alt="Jose"
+                className="h-32 w-32 rounded-full mx-auto object-cover"
+              />
+              <p className="mt-2 font-luckiest">JOSE</p>
+            </div>
+            <div className="text-center m-2">
+              <img
+                src="/fortun.jpeg" // Ganti dengan path gambar yang sesuai
+                alt="Fortuna"
+                className="h-32 w-32 rounded-full mx-auto object-cover"
+              />
+              <p className="mt-2 font-luckiest">FORTUNA</p>
+            </div>
+          </div>
+        </section>
+        <br />
+      </div>
+    </>
+  );
+};
 
-                        <div className='p-2'>
-                            <Image src='/jose.jpeg' alt='gambar fortuna' width={500} height={500}></Image>
-                            <h2>Jose Morinho Ngadio</h2>
-                        </div>
-                    </div>
-                
-                </section>
-            </main>
-    );
-}
+export default About;

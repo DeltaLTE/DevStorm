@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 export default function BotNav() {
     return (
-        <div className="fixed-bot left-0 w-full z-50 flex h-20 bg-[#FF3D00] shadow-md px-6 py-4 items-center justify-between">
+        <div className="fixed-bot left-0 w-full z-50 flex h-20 bg-yellow-200 shadow-md px-6 py-4 items-center justify-between">
 
             <h1>© 2025, Kelompok 10. All Rights Reserved.</h1>
             <div className='flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium '>

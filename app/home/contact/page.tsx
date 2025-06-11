@@ -1,35 +1,76 @@
-import Image from 'next/image'
+'use client';
 
-export default function Page() {
-    return (
-            <main className="mt-8 p-20">
-                <section>
-                    <h2 className="text-xl mb-2">Jika kalian ada pertanyaan atau ingin memesan produk, silahkan hubungi kami melalui sosial media dibawah</h2>
-                    <br />
-                    <br />
-                    <br />
-                </section>
+import React from 'react';
+import Image from 'next/image'; // Untuk logo
 
-                <section>
-                    <h2 className="text-xl mb-2">SOCIAL MEDIA:</h2>
-                    <ul className="space-y-2">
-                        <br />
-                        <li className="flex items-center gap-2">
-                            <Image src="/WhatsApp.png" alt="WhatsApp" width={50} height={50} className='rounded-full'/>
-                            <span>081267672379</span>
-                        </li>
-                        <br />
-                        <li className="flex items-center gap-2">
-                            <Image src="/Instagram.png" alt="Instagram" width={50} height={50} className='rounded-full'/>
-                            <span>LOLMARTIDN</span>
-                        </li>
-                        <br />
-                        <li className="flex items-center gap-2">
-                            <Image src="/tiktok.png" alt="TikTok" width={50} height={50} className='rounded-full w-10 h-10'/>
-                            <span>@LOLMARTIDN_</span>
-                        </li>
-                    </ul>
-                </section>
-            </main>
-    );
-}
+const Contact = () => {
+  return (
+    <>
+      {/* Load Google Fonts directly */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap');
+        .font-luckiest {
+          font-family: 'Luckiest Guy', sans-serif;
+          color: black;
+        }
+      `}</style>
+
+      <div className="bg-white text-center">
+        {/* Header */}
+        <header className="flex justify-between items-center bg-yellow-400 p-4 text-white">
+          <div className="flex items-center">
+          </div>
+        </header>
+
+        {/* Contact Section */}
+        <br />
+        <br />
+        <br />
+        <br />
+        <section className="bg-yellow-200 p-6 mt-11 rounded-[50px] max-w-2xl mx-auto"> {/* Kotak dengan sudut bengkok */}
+          <h2 className="text-2xl font-luckiest">CONTACT US</h2>
+          <br />
+          <div className="text-left font-luckiest text-lg">
+            <h3>SOCIAL MEDIA:</h3>
+            <div className="flex items-center space-x-2 mt-2">
+              <Image
+                src="/WhatsApp.png" // Ganti dengan path ikon WhatsApp
+                alt="WhatsApp"
+                width={24}
+                height={24}
+              />
+              <p>081267672379</p>
+            </div>
+            <div className="flex items-center space-x-2 mt-2">
+              <Image
+                src="/Instagram.png" // Ganti dengan path ikon Instagram
+                alt="Instagram"
+                width={24}
+                height={24}
+              />
+              <p>LOLMARTIDN</p>
+            </div>
+            <div className="flex items-center space-x-2 mt-2">
+              <Image
+                src="/tiktok.png" // Ganti dengan path ikon TikTok
+                alt="TikTok"
+                width={24}
+                height={24}
+              />
+              <p>@LOLMARTIDN</p>
+            </div>
+            <br />
+            <h3>OFFLINE STORE ADDRESS:</h3>
+            <p className="mt-2">JL. SETURAN RTM DEPOK, SLEMAN YOGYAKARTA</p>
+          </div>
+        </section>
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
+    </>
+  );
+};
+
+export default Contact;

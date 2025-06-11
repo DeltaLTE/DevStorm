@@ -7,7 +7,7 @@ import Image from 'next/image'
 
 export default function TopNav() {
   return (
-    <div className="fixed top-0 left-0 w-full z-50 flex h-20 bg-[#FF3D00] shadow-md px-6 py-4 items-center justify-between">
+    <div className="fixed top-0 left-0 w-full z-50 flex h-20 bg-yellow-200 shadow-md px-6 py-4 items-center justify-between">
       
       {/* Logo Section */}
       <Link href="/home" className="flex items-center ">
