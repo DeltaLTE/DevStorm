@@ -28,7 +28,7 @@ export async function TabelProdukContent({ search }: TabelProdukContentProps) {
             <td className="border px-3 py-2">{produk.id_produk}</td>
             <td className="border px-3 py-2">{produk.nama_produk}</td>
             <td className="border px-3 py-2">
-              {produk.harga.toLocaleString('id-ID', {
+              {produk.harga?.toLocaleString('id-ID', {
                 style: 'currency',
                 currency: 'IDR',
               })}
@@ -37,13 +37,13 @@ export async function TabelProdukContent({ search }: TabelProdukContentProps) {
             <td className="border px-3 py-2">
               <img
                 src={produk.foto || ''}
-                alt={produk.nama_produk}
+                alt={produk.nama_produk || ''}
                 className="h-10 w-10 object-cover rounded"
               />
             </td>
             <td className="border px-3 py-2">
               <div className="flex space-x-2">
-                <UpdateProduk id={produk.id_produk} />
+                <UpdateProduk id={produk.id_produk.toString()} />
                 <form action={deleteProduk}>
                   <input
                     type="hidden"
