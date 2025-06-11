@@ -6,18 +6,26 @@ import { Produk, Transaksi } from "@/app/lib/definitions"
 
 const prisma = new PrismaClient();
 
-export async function fetchProdukPrisma(search?: string) {
+export async function fetchProdukPrisma(search?: string, skip: number = 0, take: number = 8) {
   try {
-    const data = await prisma.produk.findMany({
-      where: search
-        ? {
-            nama_produk: {
-              contains: search,
-              mode: 'insensitive',
-            },
-          }
-        : undefined,
-    });
+    const where = search
+      ? {
+          nama_produk: {
+            contains: search,
+            mode: 'insensitive',
+          },
+        }
+      : {};
+
+    const [data, total] = await Promise.all([
+      prisma.produk.findMany({
+        where,
+        skip,
+        take,
+        orderBy: { id_produk: 'asc' },
+      }),
+      prisma.produk.count({ where }),
+    ]);
 
     const Produk = data.map((produk) => ({
       id_produk: produk.id_produk,
@@ -26,15 +34,14 @@ export async function fetchProdukPrisma(search?: string) {
       stok: produk.stok,
       foto: produk.foto,
       deskripsi: produk.deskripsi,
-    })) as unknown as Produk[];
+    })) as Produk[];
 
-    return Produk;
+    return { produk: Produk, total };
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch produk.");
   }
 }
-
 
 
 export async function fetchTransaksiPrisma() {
@@ -107,6 +114,8 @@ export async function fetchMostSoldProduct() {
     throw new Error("Failed to fetch most sold product.");
   }
 }
+
+
 
 export async function POST(req: NextRequest) {
   const formData = await req.formData();

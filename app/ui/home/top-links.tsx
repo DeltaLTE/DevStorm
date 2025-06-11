@@ -3,6 +3,7 @@ import {
   HomeIcon,
   DocumentDuplicateIcon,
 } from '@heroicons/react/24/outline';
+import { luckiest } from '@/app/ui/fonts';
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
@@ -22,7 +23,7 @@ export default function TopLinks() {
             key={link.name}
             href={link.href}
             className="flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium text-black hover:text-gray-700 md:flex-none md:justify-start md:p-2 md:px-3">
-            <p className="hidden md:block">{link.name}</p>
+            <p className={`${luckiest.className} hidden md:block`}>{link.name}</p>
           </a>
         );
       })}

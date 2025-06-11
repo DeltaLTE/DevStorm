@@ -8,7 +8,7 @@ type TabelProdukContentProps = {
 };
 
 export async function TabelProdukContent({ search }: TabelProdukContentProps) {
-  const produkList = await fetchProdukPrisma(search);
+  const { produk: produkList } = await fetchProdukPrisma(search);
 
   return (
     <table className="w-full text-sm text-left text-black border-collapse">

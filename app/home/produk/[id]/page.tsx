@@ -7,7 +7,7 @@ import { useParams } from 'next/navigation';
 
 type Produk = {
   id_produk: number;
-  nama_produk: string;
+  nama_produk: string;  
   harga: number;
   deskripsi: string;
   foto: string;

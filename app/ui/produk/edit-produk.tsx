@@ -51,7 +51,7 @@ export default function EditProdukForm({ produk }: { produk: any }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4 bg-white p-6 rounded-xl shadow-md max-w-xl mx-auto mt-6">
+    <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4 bg-yellow-200 p-6 rounded-xl shadow-md max-w-xl mx-auto mt-6">
       <h2 className="text-lg font-bold">Edit Produk</h2>
 
       <input name="nama_produk" value={formData.nama_produk} onChange={handleChange} className="w-full border p-2 rounded" required />

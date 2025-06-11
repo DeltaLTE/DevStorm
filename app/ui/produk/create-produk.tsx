@@ -5,7 +5,7 @@ import { createProduk } from "@/app/lib/actions"
 export default function CreateProdukForm() {
 
   return (
-    <form action={createProduk} className="space-y-4 bg-white p-6 rounded-xl shadow-md max-w-xl mx-auto mt-6">
+    <form action={createProduk} className="space-y-4 bg-yellow-200 p-6 rounded-xl shadow-md max-w-xl mx-auto mt-6">
       <h2 className="text-lg font-bold">Tambah Produk</h2>
       <input name="nama_produk" placeholder="Nama Produk" className="w-full border p-2 rounded"  required />
       <input name="harga" type="number" placeholder="Harga" className="w-full border p-2 rounded"  required />

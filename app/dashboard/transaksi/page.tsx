@@ -11,7 +11,7 @@ const TransaksiTable = async () => {
             <Link href="/home" className="top-0 p-3 flex items-center justify-end z-20 h-header-height select-none *:pointer-events-auto motion-safe:transition max-md:hidden">
                 <UserIcon className=" h-10 w-10" />
             </Link>
-            <div className="bg-yellow-100 rounded-3xl p-4 w-full max-w-5xl mx-auto">
+            <div className="bg-yellow-200 rounded-3xl p-4 w-full max-w-5xl mx-auto">
                 <div className="flex justify-between items-center mb-4">
                     <input
                         type="text"
