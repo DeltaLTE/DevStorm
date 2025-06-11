@@ -97,35 +97,43 @@ export async function updateProduk(id_produk: number, formData: FormData): Promi
 }
 
 export async function createTransaksi(formData: FormData) {
-  const nama_produk = formData.get('nama_produk') as string;
-  const harga = parseInt(formData.get('harga') as string, 10);
-  const stok = parseInt(formData.get('stok') as string, 10);
-  const deskripsi = formData.get('deskripsi') as string;
-  const fotoFile = formData.get('foto') as File;
+  const nama_pelanggan = formData.get('nama_pelanggan') as string;
+  const total_harga = parseInt(formData.get('total_harga') as string, 10);
+  const tanggal_transaksi = formData.get('tanggal_transaksi') as string;
+  const id_produk = parseInt(formData.get('id_produk') as string, 10);
 
-  if (!fotoFile || !fotoFile.size) {
-    throw new Error('No image uploaded');
+  if (!nama_pelanggan || isNaN(total_harga) || !tanggal_transaksi || isNaN(id_produk)) {
+    throw new Error('Invalid form data');
   }
 
-  const bytes = await fotoFile.arrayBuffer();
-  const buffer = Buffer.from(bytes);
-
-  const fileName = `${Date.now()}-${fotoFile.name}`;
-  const filePath = path.join(process.cwd(), 'public', fileName);
-
-  await writeFile(filePath, buffer);
-
-  const fotoPath = `/${fileName}`;
-
-  await prisma.produk.create({
+  await prisma.transaksi.create({
     data: {
-      nama_produk,
-      harga,
-      stok,
-      deskripsi,
-      foto: fotoPath,
+      nama_pelanggan,
+      total_harga,
+      tanggal_transaksi: new Date(tanggal_transaksi),
+      id_produk,
     },
   });
 
-  redirect('/dashboard/produk'); // change this to wherever your read page is
+  redirect('/dashboard/transaksi'); // Adjust to your actual redirect path
+}
+
+
+export async function deleteTransaksi(formData: FormData) {
+  const id_transaksi = Number(formData.get("id_transaksi"));
+
+  if (!id_transaksi || isNaN(id_transaksi)) {
+    throw new Error("Invalid or missing transaction ID");
+  }
+
+  try {
+    await prisma.transaksi.delete({
+      where: { id_transaksi },
+    });
+  } catch (error) {
+    console.error("Failed to delete transaksi:", error);
+    throw error;
+  }
+
+  redirect('/dashboard/transaksi'); // Change to your correct path
 }

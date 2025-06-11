@@ -6,9 +6,17 @@ import { Produk, Transaksi } from "@/app/lib/definitions"
 
 const prisma = new PrismaClient();
 
-export async function fetchProdukPrisma() {
+export async function fetchProdukPrisma(search?: string) {
   try {
     const data = await prisma.produk.findMany({
+      where: search
+        ? {
+            nama_produk: {
+              contains: search,
+              mode: 'insensitive',
+            },
+          }
+        : undefined,
     });
 
     const Produk = data.map((produk) => ({
@@ -26,8 +34,6 @@ export async function fetchProdukPrisma() {
     throw new Error("Failed to fetch produk.");
   }
 }
-
-
 
 
 
