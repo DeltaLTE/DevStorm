@@ -102,8 +102,8 @@ export type Produk = {
 
 export type Transaksi = {
   id_transaksi: number;
-  nama_pembeli: string;
-  tanggal: Date;
+  nama_pelanggan: string;
+  tanggal_transaksi: Date;
   total_harga: number;
 }
 
