@@ -152,6 +152,14 @@ const config = {
         "fromEnvVar": null,
         "value": "debian-openssl-3.0.x",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
+      },
+      {
+        "fromEnvVar": null,
+        "value": "rhel-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -169,7 +177,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": true,
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -178,8 +186,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel produk {\n  id_produk   Int         @id @default(autoincrement())\n  nama_produk String?     @db.VarChar(255)\n  harga       Int?\n  stok        Int?        @db.SmallInt\n  foto        String?     @db.VarChar(255)\n  deskripsi   String?\n  transaksi   transaksi[]\n}\n\nmodel transaksi {\n  id_transaksi      Int       @id @default(autoincrement())\n  nama_pelanggan    String?   @db.VarChar(255)\n  total_harga       Int?\n  tanggal_transaksi DateTime? @db.Date\n  id_produk         Int?\n  produk            produk?   @relation(fields: [id_produk], references: [id_produk], onDelete: NoAction, onUpdate: NoAction, map: \"id_produk\")\n}\n",
-  "inlineSchemaHash": "783e98f04e58aad9ed2387eb23af83fd552bb00f1ab1c7349cf4805a44eb8d3f",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../generated/prisma\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"rhel-openssl-3.0.x\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel produk {\n  id_produk   Int         @id @default(autoincrement())\n  nama_produk String?     @db.VarChar(255)\n  harga       Int?\n  stok        Int?        @db.SmallInt\n  foto        String?     @db.VarChar(255)\n  deskripsi   String?\n  transaksi   transaksi[]\n}\n\nmodel transaksi {\n  id_transaksi      Int       @id @default(autoincrement())\n  nama_pelanggan    String?   @db.VarChar(255)\n  total_harga       Int?\n  tanggal_transaksi DateTime? @db.Date\n  id_produk         Int?\n  produk            produk?   @relation(fields: [id_produk], references: [id_produk], onDelete: NoAction, onUpdate: NoAction, map: \"id_produk\")\n}\n",
+  "inlineSchemaHash": "39f8ff8bd56d6969963d47105219bed9e676c1aae524b4b99e2a8200809451c3",
   "copyEngine": true
 }
 
@@ -220,6 +228,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
 path.join(process.cwd(), "generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-rhel-openssl-3.0.x.so.node");
+path.join(process.cwd(), "generated/prisma/libquery_engine-rhel-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "generated/prisma/schema.prisma")
