@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   output        = "../node_modules/.prisma/client"
   binaryTargets = ["native", "debian-openssl-3.0.x", "rhel-openssl-3.0.x"]
 }
@@ -26,4 +26,12 @@ model transaksi {
   tanggal_transaksi DateTime? @db.Date
   id_produk         Int?
   produk            produk?   @relation(fields: [id_produk], references: [id_produk], onDelete: NoAction, onUpdate: NoAction, map: "id_produk")
+}
+
+model pengguna {
+  id_pengguna  Int     @id @default(autoincrement())
+  username     String? @db.VarChar(100)
+  email        String? @db.VarChar(100)
+  nomor_telpon Int?
+  password     String? @db.VarChar(100)
 }
