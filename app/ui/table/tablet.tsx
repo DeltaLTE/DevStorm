@@ -20,9 +20,9 @@ export async function TabelTransaksiContent() {
         {transaksiList.map((transaksi) => (
           <tr key={transaksi.id_transaksi} className="bg-white">
             <td className="border px-3 py-2">{transaksi.id_transaksi}</td>
-            <td className="border px-3 py-2">{transaksi.nama_pembeli}</td>
+            <td className="border px-3 py-2">{transaksi.nama_pelanggan}</td>
             <td className="border px-3 py-2">
-              {new Date(transaksi.tanggal).toISOString().split('T')[0]}
+              {new Date(transaksi.tanggal_transaksi).toISOString().split('T')[0]}
             </td>
             <td className="border px-3 py-2">
               {transaksi.total_harga.toLocaleString('id-ID', {
