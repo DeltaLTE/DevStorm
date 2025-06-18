@@ -10,11 +10,12 @@ export default function LoginForm() {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [captchaError, setCaptchaError] = useState(''); // State for CAPTCHA error
+  const [captchaError, setCaptchaError] = useState('');
+  const [loginError, setLoginError] = useState(''); // For server authentication errors
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [captchaCode, setCaptchaCode] = useState(''); // State for generated CAPTCHA code
-  const [userCaptchaInput, setUserCaptchaInput] = useState(''); // State for user's CAPTCHA input
+  const [captchaCode, setCaptchaCode] = useState('');
+  const [userCaptchaInput, setUserCaptchaInput] = useState('');
 
   // Generate a random 5-character CAPTCHA code
   const generateCaptchaCode = () => {
@@ -39,16 +40,17 @@ export default function LoginForm() {
   // Handle CAPTCHA refresh
   const refreshCaptcha = () => {
     setCaptchaCode(generateCaptchaCode());
-    setUserCaptchaInput(''); // Clear user input
-    setCaptchaError(''); // Clear CAPTCHA error
+    setUserCaptchaInput('');
+    setCaptchaError('');
   };
 
   // Handle submit form
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setEmailError('');
     setPasswordError('');
     setCaptchaError('');
+    setLoginError('');
     setIsLoading(true);
 
     let hasError = false;
@@ -86,19 +88,44 @@ export default function LoginForm() {
       return;
     }
 
-    // Simulate login process
-    setTimeout(() => {
-      console.log('Login success with:', user, password, 'CAPTCHA:', userCaptchaInput);
-      if (user === 'admin123') {
-        location.href = '/dashboard';
+    try {
+      // Call the login API
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: user,
+          password: password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Login successful
+        console.log('Login success:', data);
+        
+        // Redirect based on dash boolean
+        if (data.user.dash === true) {
+          window.location.href = '/dashboard';
+        } else {
+          window.location.href = '/home';
+        }
       } else {
-        location.href = '/home';
+        // Login failed
+        setLoginError(data.message || 'Login failed');
+        // Refresh CAPTCHA on failed login
+        refreshCaptcha();
       }
+    } catch (error) {
+      console.error('Login error:', error);
+      setLoginError('An error occurred during login. Please try again.');
+      refreshCaptcha();
+    } finally {
       setIsLoading(false);
-      // Reset CAPTCHA after successful submission
-      setCaptchaCode(generateCaptchaCode());
-      setUserCaptchaInput('');
-    }, 1000);
+    }
   };
 
   return (
@@ -164,6 +191,13 @@ export default function LoginForm() {
         <div className="relative z-10 flex items-center justify-center w-full">
           <form className="bg-yellow-100 p-6 rounded-3xl shadow-lg w-96" onSubmit={handleSubmit}>
             <h2 className="text-2xl font-bold text-center mb-6">LOGIN</h2>
+
+            {/* General Login Error */}
+            {loginError && (
+              <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+                {loginError}
+              </div>
+            )}
 
             {/* USERNAME */}
             <div className="mb-4">
@@ -234,7 +268,7 @@ export default function LoginForm() {
 
             {/* LINK REGISTER */}
             <p className="text-center mt-4">
-              DON’T HAVE AN ACCOUNT?{' '}
+              DON'T HAVE AN ACCOUNT?{' '}
               <Link href="/login/register" className="text-blue-500">
                 REGISTER
               </Link>

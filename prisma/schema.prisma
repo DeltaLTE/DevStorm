@@ -29,9 +29,10 @@ model transaksi {
 }
 
 model pengguna {
-  id_pengguna  Int     @id @default(autoincrement())
-  username     String? @db.VarChar(100)
-  email        String? @db.VarChar(100)
-  nomor_telpon Int?
-  password     String? @db.VarChar(100)
+  id_pengguna  Int      @id @default(autoincrement())
+  username     String?  @db.VarChar(100)
+  email        String?  @db.VarChar(100)
+  nomor_telpon String?  @db.Char(15)
+  password     String?  @db.VarChar(100)
+  dash         Boolean?
 }
