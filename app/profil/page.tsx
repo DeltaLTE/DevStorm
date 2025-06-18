@@ -6,20 +6,32 @@ export default function ProfilePage() {
   return (
     <main className="min-h-screen">
       {/* Profile Header */}
-      <div className="bg-orange-500 p-4 relative">
-        <Link
-          href="/home"
-          className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white"
-        >
-          <ArrowLeftIcon className="w-6 h-6" />
-        </Link>
-        <h1 className="text-white text-center text-2xl font-bold mt-2">PROFILE</h1>
+      <div className="bg-yellow-200 p-4 relative rounded-b-xl">
+        {/* Arrow, Profile title, and Logo in same row */}
+        <div className="flex items-center justify-between relative">
+          <Link
+            href="/home"
+            className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white"
+          >
+            <ArrowLeftIcon className="w-6 h-6" />
+          </Link>
+          <h1 className="text-white text-2xl font-bold">PROFILE</h1>
+          <div className="w-12 h-12">
+            <Image
+              src="/lolmart.jpeg" // Replace with actual logo path
+              alt="Logo"
+              width={75}
+              height={75}
+              className="object-cover rounded-full"
+            />
+          </div>
+        </div>
 
         {/* Profile Avatar */}
-        <div className="flex justify-center -mb-12">
+        <div className="flex justify-center mt-4 -mb-12">
           <div className="w-24 h-24 rounded-full bg-green-500 border-4 border-orange-500 overflow-hidden relative">
             <Image
-              src="/api/placeholder/100/100"
+              src="/jose.jpeg"
               alt="Profile Picture"
               width={100}
               height={100}
@@ -29,10 +41,13 @@ export default function ProfilePage() {
         </div>
       </div>
 
+      {/* Gap between the two yellow sections */}
+      <div className="h-4 bg-white"></div>
+
       {/* Profile Content */}
       <div className="bg-yellow-300 p-6 pt-16">
         {/* Username */}
-        <h2 className="text-center font-bold text-xl mb-6">PENNY WISE</h2>
+        <h2 className="text-center font-bold text-xl mb-6">PENNYWISE</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Basic Information */}
@@ -88,7 +103,7 @@ export default function ProfilePage() {
                 <input
                   type="text"
                   className="w-full p-2 rounded-md bg-white"
-                  aria-label="Career"
+                  aria-label="Gender"
                 />
               </div>
 
@@ -125,6 +140,13 @@ export default function ProfilePage() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Confirm Button */}
+        <div className="flex justify-center mt-6">
+          <button className="bg-white text-black font-bold py-2 px-6 rounded-full">
+            CONFIRM
+          </button>
         </div>
       </div>
     </main>
