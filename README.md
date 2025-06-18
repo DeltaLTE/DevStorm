@@ -14,6 +14,10 @@ Link Deploy Vercel:
 https://dev-storm-ten.vercel.app/
 Note: saat klik link, nanti dijumpa halaman default nextjs. Tinggal lanjut klik login saja
 
+Kredential vercel:
+User: tidak ada kredential, bebas diisi apa saja
+Admin: harus menggunakan username "admin123", password tidak ada
+
 
 Kontribusi tiap anggota:
 Fortuna:
